@@ -1,12 +1,7 @@
 "use client";
 
-import Footer from "@/components/Footer";
-import LiveCounters from "@/components/LiveCounter";
-import Stats from "@/components/Stats";
-import Stories from "@/components/Stories";
-import CallTo from "@/components/CallTo";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 /* ─── DATA ──────────────────────────────────────────────── */
 
@@ -18,21 +13,54 @@ const telegramPerks = [
 ];
 
 const topGroups = [
-  { rank: 1, name: "Dubai Hustlers", members: 1240, earnings: "$84,200", growth: "+38%" },
-  { rank: 2, name: "EU Growth Pod", members: 980, earnings: "$61,500", growth: "+29%" },
-  { rank: 3, name: "Asia Pacific Crew", members: 870, earnings: "$53,100", growth: "+24%" },
-  { rank: 4, name: "US Content Lab", members: 760, earnings: "$44,800", growth: "+19%" },
-  { rank: 5, name: "LATAM Creators", members: 620, earnings: "$38,200", growth: "+16%" },
+  { rank: 1, name: "Dubai Hustlers", members: 1240, earnings: "$84,200", change: "+38%" },
+  { rank: 2, name: "EU Growth Pod", members: 980, earnings: "$61,500", change: "+29%" },
+  { rank: 3, name: "Asia Pacific Crew", members: 870, earnings: "$53,100", change: "+24%" },
+  { rank: 4, name: "US Content Lab", members: 760, earnings: "$44,800", change: "+19%" },
 ];
 
 const crazyStories = [
-  { handle: "@maya.creates", avatar: "M", followers: "1.2M", story: "Went from a $9/hr barista to earning $22,000 in her third month. Her first viral video hit 4.7M views overnight.", tag: "$22K Month", tagColor: "#FF4D00" },
-  { handle: "@haris_tnt", avatar: "H", followers: "890K", story: "Dropped out of a corporate job, joined TNT. Built a 6-figure business around one niche in 5 months.", tag: "6-Figure Brand", tagColor: "#FF4D00" },
-  { handle: "@zara.vision", avatar: "Z", followers: "2.1M", story: "Landed a brand deal with a Fortune 500 company after TNT's coaching. Now runs her own agency of 12 people.", tag: "Agency Owner", tagColor: "#FF4D00" },
-  { handle: "@omar.clips", avatar: "O", followers: "540K", story: "Started with zero equipment, just a phone. Hit 100K followers in 30 days using our viral blueprint.", tag: "100K in 30 Days", tagColor: "#FF4D00" },
-  { handle: "@leila.tnt", avatar: "L", followers: "780K", story: "Single mom, part-time creator. Replaced her full-time salary in 8 weeks. Now coaches other moms.", tag: "Full Salary Replaced", tagColor: "#FF4D00" },
-  { handle: "@dev.studio", avatar: "D", followers: "430K", story: "Used TNT's system to build a media company. Raised $200K in pre-seed funding from content virality alone.", tag: "$200K Raised", tagColor: "#FF4D00" },
-];
+    {
+      id: "01",
+      handle: "@alex_stream",
+      avatar: "AS",
+      followers: "1.2M",
+      tag: "REVENUE GROWTH",
+      metric: "$52,000/mo",
+      story: "I was working two jobs and streaming to 5 people. Within 3 months of using the platform's distribution tools, I hit my first five-figure month. The data-driven insights allowed me to quit my day job entirely.",
+      color: "#FF4D00"
+    },
+    {
+      id: "02",
+      handle: "@mira_tech",
+      avatar: "MT",
+      followers: "850k",
+      tag: "GLOBAL EXPANSION",
+      metric: "Vertical Scale",
+      story: "Most platforms box you into one region. We managed to break into the Asian market overnight by leveraging localized engagement metrics. Our growth curve went from flat to vertical in 48 hours.",
+      color: "#000000"
+    },
+    {
+      id: "03",
+      handle: "@jordan_creative",
+      avatar: "JC",
+      followers: "400k",
+      tag: "AUDIENCE RETENTION",
+      metric: "+85% Loyalty",
+      story: "We weren't just looking for more views; we wanted a community. The built-in CRM tools allowed us to segment our top 1% of fans and double our recurring monthly revenue through private access.",
+      color: "#000000"
+    },
+    {
+      id: "04",
+      handle: "@sara_vlogs",
+      avatar: "SV",
+      followers: "2.1M",
+      tag: "CONTENT SYNDICATION",
+      metric: "12 Channels",
+      story: "Managing 12 different social channels was killing my creativity. The auto-optimization engine handles the distribution while I focus on the camera. My output has doubled with half the effort.",
+      color: "#FF4D00"
+    }
+  ];
 
 const testimonialImages = [
   { x: 5, y: 8, rotate: -3, scale: 1.0, zIndex: 3, color: "#FF4D00", initials: "FA", stars: 5, text: "Made $8K first month!", name: "Fatima A." },
@@ -53,11 +81,20 @@ const stats = [
   { number: "3,000+", label: "Verified Reviews", icon: "/images/new4.png" },
 ];
 
-const socialLinks = [
-  { name: "TikTok", href: "#", path: "M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V9a8.27 8.27 0 0 0 4.83 1.54V7.1a4.85 4.85 0 0 1-1.06-.41z" },
-  { name: "Instagram", href: "#", path: "M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z" },
-  { name: "YouTube", href: "#", path: "M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" },
-  { name: "Twitter/X", href: "#", path: "M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" },
+const miniStats = [
+  { num: "24/7", label: "Support" },
+  { num: "Instant", label: "Payouts" },
+  { num: "Global", label: "Network" },
+];
+
+const chartData = [
+  { month: "Oct", value: 180 },
+  { month: "Nov", value: 310 },
+  { month: "Dec", value: 420 },
+  { month: "Jan", value: 580 },
+  { month: "Feb", value: 720 },
+  { month: "Mar", value: 940 },
+  { month: "Apr", value: 1120 },
 ];
 
 /* ─── SCROLL REVEAL HOOK ─────────────────────────────────── */
@@ -90,35 +127,29 @@ function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
   );
 }
 
-/* ─── ANIMATED COUNTER ───────────────────────────────────── */
-function Counter({ target, suffix = "" }: { target: string; suffix?: string }) {
-  const { ref, visible } = useScrollReveal();
-  return <span ref={ref}>{visible ? target : "0"}{suffix}</span>;
-}
 
-/* ─── TICKER ─────────────────────────────────────────────── */
-const tickerItems = ["💰 $2.8M+ Paid Out", "⚡ 500M+ Views", "👥 47,200 Members", "🔥 3,000+ Reviews", "🚀 Top Creator Earned $22K/Month", "⭐ Join Today", "💰 $2.8M+ Paid Out", "⚡ 500M+ Views", "👥 47,200 Members", "🔥 3,000+ Reviews", "🚀 Top Creator Earned $22K/Month", "⭐ Join Today"];
 
-/* ─── BAR CHART ──────────────────────────────────────────── */
-const chartData = [
-  { month: "Oct", value: 180 },
-  { month: "Nov", value: 310 },
-  { month: "Dec", value: 420 },
-  { month: "Jan", value: 580 },
-  { month: "Feb", value: 720 },
-  { month: "Mar", value: 940 },
-  { month: "Apr", value: 1120 },
-];
-// const maxVal = Math.max(...chartData.map(d => d.value));
-const maxVal = Math.max(...chartData.map(d => d.value), 1); 
+/* ─── MAIN PAGE ────────────────────────────────────────── */
 
-/* ─── PAGE COMPONENT ─────────────────────────────────────── */
-export default function CreatorLanding() {
+export default function App() {
   const [memberCount] = useState(47284);
   const [payments] = useState(2841200);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const colors = {
+    bg: "#FFFFFF",
+    surface: "#F9F9F9",
+    accent: "#FF5F00", 
+    textPrimary: "#111111",
+    textSecondary: "#666666",
+    border: "#EEEEEE",
+    success: "#16A34A"
+  };
+
+  const maxVal = Math.max(...chartData.map(d => d.value), 1); 
 
   return (
-    <main style={{ background: "#FFFFFF", color: "#0A0A0A", fontFamily: "'Poppins', sans-serif", overflowX: "hidden" }}>
+    <div style={{ background: "#FFFFFF", color: "#0A0A0A", fontFamily: "'Poppins', sans-serif", overflowX: "hidden" }}>
 
       {/* ── NAVBAR ── */}
       <nav style={{
@@ -129,25 +160,13 @@ export default function CreatorLanding() {
         display: "flex", alignItems: "center", justifyContent: "space-between"
       }}>
         <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-          <Link href="/" className="font-display font-black text-2xl tracking-tight shrink-0">
-            <img 
-              src="/images/logo.png" 
-              alt="TNT" 
-              width={100} 
-              height={100} 
-              style={{ 
-                borderRadius: '8px', 
-                filter: 'brightness(0)' 
-              }} 
-            />
+          <Link href="/" className="font-display font-black text-2xl tracking-tight" style={{ color: 'var(--brand-cream)' }}>
+            <img src="/images/logo.png" alt="TNT" width={100} height={100} style={{ borderRadius: '8px',filter:'brightness(0)' }} />
           </Link>
         </div>
         <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
-          <Link
-            href="become-creator"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-blue-200"
+          <a
+            href="#"
             style={{
               background: "#FF4D00", color: "#fff",
               padding: "10px 22px", borderRadius: 50,
@@ -157,26 +176,9 @@ export default function CreatorLanding() {
             }}
           >
             Become a Creator →
-          </Link>
+          </a>
         </div>
       </nav>
-
-      {/* ── TICKER ── */}
-      {/* <div style={{
-        marginTop: 68, background: "#FF4D00", padding: "10px 0",
-        overflow: "hidden", whiteSpace: "nowrap"
-      }}>
-        <div style={{
-          display: "inline-flex", gap: "3rem",
-          animation: "ticker 28s linear infinite"
-        }}>
-          {tickerItems.map((item, i) => (
-            <span key={i} style={{ color: "#fff", fontWeight: 700, fontSize: "0.82rem", letterSpacing: "0.04em", textTransform: "uppercase" }}>
-              {item}
-            </span>
-          ))}
-        </div>
-      </div> */}
 
       {/* ── HERO ── */}
       <section style={{
@@ -189,24 +191,20 @@ export default function CreatorLanding() {
           overflow: "hidden",
           background: "#FFFFFF"
       }}>
-          {/* Background Decorations */}
           <div style={{ position: "absolute", top: "10%", left: "-100px", width: 500, height: 500, borderRadius: "50%", background: "radial-gradient(circle, rgba(255,77,0,0.1) 0%, transparent 70%)", pointerEvents: "none" }} />
           <div style={{ position: "absolute", bottom: "5%", right: "-80px", width: 400, height: 400, borderRadius: "50%", background: "radial-gradient(circle, rgba(255,77,0,0.06) 0%, transparent 70%)", pointerEvents: "none" }} />
           <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(255,77,0,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,77,0,0.03) 1px, transparent 1px)", backgroundSize: "60px 60px", pointerEvents: "none" }} />
 
-          {/* Main Split Container */}
           <div style={{ 
               position: "relative", 
               zIndex: 2, 
-              maxWidth: 1600, 
+              maxWidth: 1200, 
               width: "100%",
               display: "grid",
-              gridTemplateColumns: "1.2fr 0.8fr", // Split into two columns
-              gap: "2rem",
+              gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+              gap: "4rem",
               alignItems: "center"
           }}>
-              
-              {/* LEFT SIDE: Content */}
               <Reveal>
                   <div style={{ textAlign: "left" }}>
                       <div style={{
@@ -221,9 +219,8 @@ export default function CreatorLanding() {
                       </div>
 
                       <h1 style={{
-                          fontSize: "clamp(2.5rem, 5vw, 4.5rem)", fontWeight: 900,
-                          lineHeight: 1.1, color: "#0A0A0A", marginBottom: "1.5rem",
-                          letterSpacing: "-2px"
+                          fontSize: "clamp(2.5rem, 5vw, 3.7rem)", fontWeight: 900,
+                          lineHeight: 1.1, color: "#0A0A0A", marginBottom: "1.5rem"
                       }}>
                           The Internet's Most<br />
                           <span style={{
@@ -244,9 +241,7 @@ export default function CreatorLanding() {
 
                       <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
                           <a
-                              href="become-creator"
-                              target="_blank"
-                              className="hover:scale-105 transition-all"
+                              href="#"
                               style={{
                                   background: "#FF4D00", color: "#fff", padding: "18px 36px",
                                   borderRadius: 50, fontWeight: 700, fontSize: "1.05rem",
@@ -310,40 +305,16 @@ export default function CreatorLanding() {
                       ))}
                   </div>
               </Reveal>
-
           </div>
       </section>
 
-      {/* ── TELEGRAM FUNNELS ── */}
-      <section id="telegram" style={{ 
-        padding: "8rem 1.5rem", 
-        background: "#F8F9FA",
-        position: "relative" 
-      }}>
+      {/* ── TELEGRAM ── */}
+      <section id="telegram" style={{ padding: "8rem 1.5rem", background: "#F8F9FA", position: "relative" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div style={{ 
-            display: "grid", 
-            gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))", 
-            gap: "2.5rem",
-            alignItems: "stretch"
-          }}>
-            
-            {/* Left Column: High Impact CTA */}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))", gap: "2.5rem", alignItems: "stretch" }}>
             <Reveal>
-              <div style={{ 
-                background: "#0A0A0A", 
-                borderRadius: 32, 
-                padding: "3.5rem 2.5rem",
-                height: "100%",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                position: "relative",
-                overflow: "hidden"
-              }}>
-                {/* Subtle background glow */}
+              <div style={{ background: "#0A0A0A", borderRadius: 32, padding: "3.5rem 2.5rem", height: "100%", display: "flex", flexDirection: "column", justifyContent: "center", position: "relative", overflow: "hidden" }}>
                 <div style={{ position: "absolute", top: "-20%", right: "-20%", width: "300px", height: "300px", background: "rgba(255,77,0,0.15)", filter: "blur(80px)", borderRadius: "50%" }} />
-                
                 <div style={{ position: "relative", zIndex: 1 }}>
                   <span style={{ color: "#FF4D00", fontWeight: 800, fontSize: "0.8rem", letterSpacing: "2px", textTransform: "uppercase" }}>The Inner Circle</span>
                   <h2 style={{ color: "#fff", fontSize: "clamp(2.5rem, 6vw, 3rem)", fontWeight: 900, marginTop: "1rem", lineHeight: 1.1 }}>
@@ -352,29 +323,19 @@ export default function CreatorLanding() {
                   <p style={{ color: "#AAA", fontSize: "1.1rem", margin: "1.5rem 0 2.5rem", lineHeight: 1.6 }}>
                     Don't miss out on real-time drops, collab requests, and our 47K+ creator community.
                   </p>
-                  
-                  <a href="https://t.me/tntcreators" target="_blank" style={{
+                  <a href="#" style={{
                     display: "flex", alignItems: "center", justifyContent: "center", gap: "1rem",
-                    background: "#FF4D00", color: "#fff", padding: "20px", borderRadius: 16,
-                    fontWeight: 800, textDecoration: "none", transition: "transform 0.2s"
-                  }} className="hover:scale-105">
+                    background: "#FF4D00", color: "#fff", padding: "20px", borderRadius: '50px',
+                    fontWeight: 500, textDecoration: "none", transition: "transform 0.2s"
+                  }}>
                     Join Our Telegram
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
                   </a>
                   
-                  <div style={{ marginTop: "2rem", display: "flex", alignItems: "center", gap: "10px" }}>
-                    <div style={{ display: "flex", marginLeft: "5px" }}>
-                      {[1,2,3,4].map(i => (
-                        <div key={i} style={{ width: 32, height: 32, borderRadius: "50%", border: "2px solid #0A0A0A", background: "#333", marginLeft: "-10px" }} />
-                      ))}
-                    </div>
-                    <span style={{ color: "#777", fontSize: "0.85rem", fontWeight: 600 }}>+47,284 members</span>
-                  </div>
                 </div>
               </div>
             </Reveal>
 
-            {/* Right Column: Perks Grid */}
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
               {telegramPerks.map((p, i) => (
                 <Reveal key={p.title} delay={i * 100}>
@@ -395,65 +356,157 @@ export default function CreatorLanding() {
                 </Reveal>
               ))}
             </div>
-
           </div>
         </div>
       </section>
 
-      {/* ── STATS & GRAPHS ── */}
-     <Stats />
+      {/* ── STATS SECTION ── */}
+      <section style={{ padding: "8rem 2rem", background: colors.bg, color: colors.textPrimary }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <div style={{ marginBottom: "2rem" }}>
+            <span style={{ color: colors.accent, fontWeight: 800, fontSize: "0.85rem", letterSpacing: "2px" }}>SYSTEM PERFORMANCE</span>
+            <h2 style={{ fontSize: "clamp(2.5rem, 6vw, 3rem)", fontWeight: 900, margin: "0.5rem 0" }}>
+              Massive scale. <span style={{ color: "#FF5F00" }}>Measured.</span>
+            </h2>
+          </div>
 
-      {/* ── CRAZY STORIES ── */}
-      <Stories />
+          <div style={{ width: "100%", background: colors.bg, border: `1px solid ${colors.border}`, borderRadius: "32px", padding: "3.5rem", marginBottom: "2rem", boxShadow: "0 20px 40px rgba(0,0,0,0.03)" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "4rem" }}>
+              <div>
+                <h3 style={{ fontSize: "1.75rem", fontWeight: 800 }}>Revenue Growth</h3>
+                <p style={{ color: colors.textSecondary }}>Monthly platform distribution</p>
+              </div>
+              <div style={{ textAlign: "right" }}>
+                <div style={{ fontSize: "2.5rem", fontWeight: 900, color: colors.accent }}>$2.4M</div>
+                <div style={{ color: colors.success, fontSize: "0.85rem", fontWeight: 700 }}>↑ 124% YOY</div>
+              </div>
+            </div>
 
-      {/* ── TESTIMONIALS FLOATING ── */}
+            <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: "15px", height: "300px", width: "100%" }}>
+              {chartData.map((d, i) => (
+                <div key={i} style={{ flex: 1, height: "100%", display: "flex", flexDirection: "column", justifyContent: "flex-end", gap: "15px" }}>
+                  <div style={{ 
+                    height: `${(d.value / maxVal) * 100}%`, width: "100%", background: i === chartData.length - 1 ? colors.accent : "#F0F0F0",
+                    borderRadius: "8px", transition: "all 0.3s ease" 
+                  }} />
+                  <span style={{ textAlign: "center", fontSize: "0.75rem", color: "#999", fontWeight: 600, textTransform: "uppercase" }}>{d.month}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div style={{ 
+          background: colors.surface, 
+          borderRadius: "32px", 
+          border: `1px solid ${colors.border}`,
+          padding: "3.5rem" 
+        }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "3rem" }}>
+            <h3 style={{ fontSize: "1.75rem", fontWeight: 800 }}>Top Networks</h3>
+            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+              <div style={{ width: 8, height: 8, background: colors.accent, borderRadius: "50%" }} />
+              <span style={{ fontSize: "0.75rem", fontWeight: 700, color: colors.textSecondary }}>LIVE NOW</span>
+            </div>
+          </div>
+
+          <div style={{ 
+            display: "grid", 
+            gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", 
+            gap: "1.5rem" 
+          }}>
+            {topGroups.map((g, i) => (
+              <div key={i} style={{ 
+                padding: "2rem", 
+                background: colors.bg, 
+                borderRadius: "20px", 
+                border: `1px solid ${colors.border}`
+              }}>
+                <div style={{ color: colors.accent, fontWeight: 500, fontSize: "1.1rem", marginBottom: "1rem" }}>{g.rank}</div>
+                <div style={{ marginBottom: "1.5rem" }}>
+                  <div style={{ fontSize: "1.1rem", fontWeight: 500 }}>{g.name}</div>
+                  <div style={{ fontSize: "0.85rem", color: colors.textSecondary }}>{g.members} members</div>
+                </div>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
+                  <div style={{ fontSize: "1.25rem", fontWeight: 500 }}>{g.earnings}</div>
+                  <div style={{ color: colors.success, fontSize: "0.8rem", fontWeight: 700 }}>{g.change}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        </div>
+      </section>
+
+      {/* ── STORIES ── */}
+      <section style={{ padding: "8rem 1.5rem", background: "#F8F9FA", color: "#0A0A0A" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <div style={{ marginBottom: "2rem" }}>
+            <span style={{ color: "#FF4D00", fontWeight: 800, fontSize: "0.8rem", letterSpacing: "2px" }}>CASE STUDIES</span>
+            <h2 style={{ fontSize: "clamp(2.5rem, 6vw, 3rem)", fontWeight: 900, margin: "1rem 0" }}>
+              The proof is in the <span style={{ color: "#FF4D00" }}>results</span>
+            </h2>
+            <p style={{ color: "#666", fontSize: "1rem" }}>Join 15,000+ top-tier creators scaling with our engine.</p>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(500px, 1fr))", gap: "2.5rem" }}>
+            {crazyStories.map((s, i) => (
+              <div key={i} style={{
+                background: "#FFF", border: "1px solid #EAEAEA", borderRadius: "32px", padding: "2.5rem",
+                display: "flex", flexDirection: "column", minHeight: "400px", justifyContent: "space-between"
+              }}>
+                <div>
+                  <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "2rem" }}>
+                    <div style={{ width: 50, height: 50, borderRadius: "12px", background: "rgba(255,125,0,0.1)", color: "#FF4D00", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 800 }}>{s.avatar}</div>
+                    <div>
+                      <div style={{ fontWeight: 700 }}>{s.handle}</div>
+                      <div style={{ fontSize: "0.8rem", color: "#888" }}>{s.followers} Followers</div>
+                    </div>
+                  </div>
+                  <p style={{ fontSize: "1.1rem", lineHeight: 1.6, color: "#333", fontStyle: "italic" }}>"{s.story}"</p>
+                </div>
+                <div style={{ borderTop: "1px solid #F0F0F0", paddingTop: "1.5rem" }}>
+                  <div style={{ fontSize: "0.7rem", fontWeight: 800, color: "#999", textTransform: "uppercase" }}>{s.tag}</div>
+                  <div style={{ fontSize: "1.5rem", fontWeight: 900, color: s.color }}>{s.metric}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── TESTIMONIALS ── */}
       <section style={{ padding: "7rem 1.5rem", background: "#FFFFFF", overflow: "hidden" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <Reveal>
             <div style={{ textAlign: "center", marginBottom: "3rem" }}>
-              <p style={{ color: "#FF4D00", fontWeight: 700, fontSize: "0.8rem", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: "0.75rem" }}>Social Proof</p>
-              <h2 style={{ fontWeight: 900, fontSize: "clamp(2.5rem, 6vw, 3rem)", color: "#0A0A0A", letterSpacing: "-1.5px" }}>
+              <p style={{ color: "#FF4D00", fontWeight: 700, fontSize: "0.8rem", letterSpacing: "0.15em", textTransform: "uppercase" }}>Social Proof</p>
+              <h2 style={{ fontWeight: 900, fontSize: "clamp(2.5rem, 6vw, 3rem)", color: "#0A0A0A" }}>
                 3,000+ Testimonials<br />
                 <span style={{ color: "#FF4D00" }}>& Live Reviews</span>
               </h2>
-              <p style={{ color: "#888", marginTop: "1rem", fontSize: "1rem" }}>Screenshots flooding in every day from our creator community</p>
             </div>
           </Reveal>
 
-          {/* Floating testimonial cards */}
           <div style={{ position: "relative", height: 500, marginBottom: "2rem" }}>
             {testimonialImages.map((t, i) => (
               <div
                 key={i}
                 style={{
-                  position: "absolute",
-                  left: `${t.x}%`,
-                  top: `${t.y}%`,
+                  position: "absolute", left: `${t.x}%`, top: `${t.y}%`,
                   transform: `rotate(${t.rotate}deg) scale(${t.scale})`,
                   zIndex: t.zIndex,
-                  background: "#fff",
-                  border: "2px solid #F0F0F0",
-                  borderRadius: 16,
-                  padding: "1rem 1.25rem",
-                  width: 190,
-                  boxShadow: "0 4px 24px rgba(0,0,0,0.06)",
-                  animation: `float${i % 3} ${4 + (i % 3)}s ease-in-out infinite`,
-                  animationDelay: `${i * 0.4}s`
+                  background: "#fff", border: "2px solid #F0F0F0", borderRadius: 16, padding: "1rem", width: 190,
+                  boxShadow: "0 4px 24px rgba(0,0,0,0.06)"
                 }}
               >
                 <div style={{ display: "flex", gap: "0.5rem", alignItems: "center", marginBottom: "0.5rem" }}>
-                  <div style={{
-                    width: 30, height: 30, borderRadius: "50%",
-                    background: `linear-gradient(135deg, ${t.color}, #FF6B35)`,
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    color: "#fff", fontWeight: 900, fontSize: "0.8rem", flexShrink: 0
-                  }}>{t.initials}</div>
+                  <div style={{ width: 30, height: 30, borderRadius: "50%", background: t.color, color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 900, fontSize: "0.8rem" }}>{t.initials}</div>
                   <div>
-                    <p style={{ fontWeight: 700, fontSize: "0.72rem", color: "#0A0A0A" }}>{t.name}</p>
-                    <div style={{ color: "#FF4D00", fontSize: "0.65rem" }}>{"★".repeat(t.stars)}</div>
+                    <div style={{ fontWeight: 700, fontSize: "0.7rem" }}>{t.name}</div>
+                    <div style={{ color: "#FF4D00", fontSize: "0.6rem" }}>{"★".repeat(t.stars)}</div>
                   </div>
                 </div>
-                <p style={{ fontSize: "0.8rem", color: "#444", fontWeight: 600 }}>"{t.text}"</p>
+                <p style={{ fontSize: "0.8rem", fontWeight: 600 }}>"{t.text}"</p>
               </div>
             ))}
           </div>
@@ -470,18 +523,112 @@ export default function CreatorLanding() {
               </span>
             </div>
           </Reveal>
+
         </div>
       </section>
 
-      {/* ── MEMBER COUNT + PAYMENTS ── */}
-      <LiveCounters />
+      {/* ── COUNTERS ── */}
+      <section style={{ padding: "8rem 1.5rem", background: '#F8F9FA' }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: "2rem" }}>
+            <span style={{ color: colors.accent, fontWeight: 800, fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase" }}>Real-Time Metrics</span>
+            <h2 style={{ fontWeight: 900, fontSize: "clamp(2.5rem, 6vw, 3rem)", marginTop: "1rem" }}>The numbers don't lie</h2>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "2.5rem", marginBottom: "5rem" }}>
+            <div style={{ background: '#fff', border: `1px solid ${colors.border}`, borderRadius: 32, padding: "4rem 2rem", textAlign: "center", boxShadow: "0 15px 35px rgba(0,0,0,0.03)", position: "relative", overflow: "hidden" }}>
+              <div className="flex items-center justify-center mb-6">
+                <img src="/images/new1.png" alt="Icon" className="w-12 h-12 opacity-90" />
+              </div>
+              <div style={{ fontWeight: 700, fontSize: "clamp(2.5rem, 6vw, 3rem)", color: colors.textPrimary }}>{memberCount.toLocaleString()}</div>
+              <p style={{ color: colors.textSecondary, fontSize: "0.9rem", fontWeight: 700, marginTop: "1rem", textTransform: "uppercase" }}>Active Network Members</p>
+            </div>
+            <div style={{ background: '#fff', border: `1px solid ${colors.border}`, borderRadius: 32, padding: "4rem 2rem", textAlign: "center", boxShadow: "0 15px 35px rgba(0,0,0,0.03)" }}>
+              <div className="flex items-center justify-center mb-6">
+                <img src="/images/new2.png" alt="Icon" className="w-12 h-12 opacity-90" />
+              </div>
+              <div style={{ fontWeight: 700, fontSize: "clamp(3rem, 6vw, 3rem)", color: colors.textPrimary }}>${(payments / 1000000).toFixed(1)}M+</div>
+              <p style={{ color: colors.textSecondary, fontSize: "0.9rem", fontWeight: 700, marginTop: "1rem", textTransform: "uppercase" }}>Total Creator Payouts</p>
+            </div>
+          </div>
+
+          <div style={{ display: "flex", justifyContent: "center", gap: "2rem", flexWrap: "wrap", padding: "2rem", background: '#fff', borderRadius: "24px", border: `1px solid ${colors.border}` }}>
+            {miniStats.map((item, i) => (
+              <div key={item.label} style={{ textAlign: "center", flex: "1 1 200px" }}>
+                <p style={{ fontWeight: 800, fontSize: "1.8rem", margin: 0 }}>{item.num}</p>
+                <p style={{ color: colors.textSecondary, fontSize: "0.75rem", fontWeight: 700, textTransform: "uppercase", marginTop: "0.4rem" }}>{item.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* ── FINAL CTA ── */}
-     <CallTo />
+      <section style={{ padding: "8rem 1.5rem", background: colors.bg }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto", background: colors.surface, borderRadius: "40px", border: `1px solid ${colors.border}`, padding: "4.5rem", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "4rem", overflow: "hidden", position: "relative", flexWrap: "wrap" }}>
+          {/* Decorative background element */}
+          <div style={{
+            position: "absolute",
+            top: "-50%",
+            right: "-10%",
+            width: "400px",
+            height: "400px",
+            background: "rgba(255, 94, 0, 0.07)",
+            filter: "blur(60px)",
+            borderRadius: "50%",
+            pointerEvents: "none"
+          }} />
+          <div style={{ flex: "2 1 500px" }}>
+            <h2 style={{ fontWeight: 900, fontSize: "clamp(2.5rem, 6vw, 3rem)", lineHeight: 1.1, marginBottom: "1.5rem" }}>
+              Ready to get paid <br /> <span style={{ color: colors.accent }}>for your content?</span>
+            </h2>
+            <p style={{ color: colors.textSecondary, fontSize: "1.1rem", maxWidth: "500px", lineHeight: 1.6 }}>
+              Join 47,000+ creators earning today. Get approved in under 24 hours.
+            </p>
+          </div>
+          <div style={{ flex: "1 1 200px", display: "flex", flexDirection: "column", alignItems: "center", gap: "1rem" }}>
+            <a
+              href="#"
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+              style={{
+                background: isHovered ? "#E65600" : colors.accent, color: "#fff", padding: "20px 48px", borderRadius: "50px", fontWeight: 700, fontSize: "1.05rem", textDecoration: "none", transition: "all 0.3s",
+                boxShadow: isHovered ? "0 15px 30px rgba(255, 95, 0, 0.25)" : "0 8px 15px rgba(255, 95, 0, 0.1)",
+              }}
+            >
+              Become a Creator →
+            </a>
+            <span style={{ fontSize: "0.8rem", color: "#999", fontWeight: 600 }}>No credit card required</span>
+          </div>
+        </div>
+      </section>
 
-      {/* ── FOOTER ── */}
-      <Footer />
-    
-    </main>
+      <footer className="px-6 md:px-16 py-12 bg-white border-t border-slate-100">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+          <img src="/images/logo.png" alt="TNT" width={80} style={{ filter: 'grayscale(1) brightness(0.2)' }} />
+          
+          <div className="flex items-center gap-5">
+            {[
+              { name: 'TikTok', href: '#', path: 'M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V9a8.27 8.27 0 0 0 4.83 1.54V7.1a4.85 4.85 0 0 1-1.06-.41z' },
+              { name: 'Instagram', href: '#', path: 'M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z' },
+              { name: 'YouTube', href: '#', path: 'M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z' },
+              { name: 'Twitter', href: '#', path: 'M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z' },
+            ].map(s => (
+              <a key={s.name} href={s.href} aria-label={s.name}
+                className="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110"
+                style={{  background: 'linear-gradient(135deg, #171717 0%, #000000 100%)' }}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                  <path d={s.path} fill="rgb(255, 255, 255)" />
+                </svg>
+              </a>
+            ))}
+          </div>
+
+          <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">© 2025 TNT. All rights reserved.</p>
+        </div>
+      </footer>
+
+
+    </div>
   );
 }

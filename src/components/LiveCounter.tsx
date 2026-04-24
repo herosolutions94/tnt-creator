@@ -29,7 +29,7 @@ const LiveCounters = ({ memberCount = 12450, payments = 12400000 }) => {
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         
         {/* Header Section */}
-        <div style={{ textAlign: "center", marginBottom: "5rem" }}>
+        <div style={{ textAlign: "center", marginBottom: "3rem" }}>
           <span style={{ 
             color: colors.accent, 
             fontWeight: 800, 
@@ -45,7 +45,7 @@ const LiveCounters = ({ memberCount = 12450, payments = 12400000 }) => {
             color: colors.textPrimary, 
             marginTop: "1rem" 
           }}>
-            The numbers don't lie.
+            The numbers don't lie
           </h2>
         </div>
 
@@ -68,11 +68,9 @@ const LiveCounters = ({ memberCount = 12450, payments = 12400000 }) => {
             position: "relative",
             overflow: "hidden"
           }}>
-            {/* Subtle orange accent bar at top */}
-            <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "6px", background: colors.accent }} />
             
-            <div style={{ marginBottom: "1.5rem" }}>
-              <img src="/images/new1.png" alt='Icon' width={48} height={48} style={{ opacity: 0.9 }} />
+            <div className="flex items-center justify-center mb-6">
+              <img src="/images/new1.png" alt="Icon" className="w-12 h-12 opacity-90" />
             </div>
             <p style={{
               fontWeight: 900, 
@@ -124,12 +122,13 @@ const LiveCounters = ({ memberCount = 12450, payments = 12400000 }) => {
             boxShadow: "0 15px 35px rgba(0,0,0,0.03)",
             position: "relative"
           }}>
-            <div style={{ marginBottom: "1.5rem" }}>
-              <img src="/images/new2.png" alt='Icon' width={48} height={48} />
+            
+            <div className="flex items-center justify-center mb-6">
+              <img src="/images/new2.png" alt="Icon" className="w-12 h-12 opacity-90" />
             </div>
             <p style={{
               fontWeight: 900, 
-              fontSize: "clamp(3rem, 6vw, 4.5rem)",
+              fontSize: "clamp(3rem, 6vw, 3rem)",
               color: colors.textPrimary, 
               letterSpacing: "-0.05em", 
               lineHeight: 1,
