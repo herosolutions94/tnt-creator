@@ -6,10 +6,10 @@ import React, { useEffect, useRef, useState } from "react";
 /* ─── DATA ──────────────────────────────────────────────── */
 
 const telegramPerks = [
-  { icon: "/images/new5.png", title: "Daily Viral Scripts", desc: "Get fresh content scripts every morning, curated by our top creators and marketing team." },
-  { icon: "/images/new6.png", title: "Live Analytics Drops", desc: "We share real numbers — what's working right now on TikTok, Reels, and Shorts." },
-  { icon: "/images/new7.png", title: "Exclusive Challenges", desc: "Monthly creator challenges with cash prizes up to $5,000 for top performers." },
-  { icon: "/images/new8.png", title: "Collab Matching", desc: "Get matched with other creators in your niche for duets and brand crossovers." },
+  { icon: "/images/new5.png", title: "Daily Viral Scripts", desc: "Ready-to-use content ideas and scripts crafted from what’s trending right now." },
+  { icon: "/images/new6.png", title: "Live Analytics Drops", desc: "See what’s working in real time across niches, formats, and platforms." },
+  { icon: "/images/new7.png", title: "Exclusive Challenges", desc: "Monthly challenges designed to push growth, consistency, and earnings." },
+  { icon: "/images/new8.png", title: "Collab Matching", desc: "Connect with creators for shoutouts, partnerships, and scaling faster." },
 ];
 
 const topGroups = [
@@ -82,8 +82,8 @@ const stats = [
 ];
 
 const miniStats = [
-  { num: "24/7", label: "Support" },
-  { num: "Instant", label: "Payouts" },
+  { num: "24/7", label: "Activity" },
+  { num: "Instant", label: "Updates" },
   { num: "Global", label: "Network" },
 ];
 
@@ -175,7 +175,7 @@ export default function App() {
               boxShadow: "0 4px 14px rgba(255,77,0,0.3)"
             }}
           >
-            Become a Creator →
+            Join Telegram →
           </a>
         </div>
       </nav>
@@ -222,24 +222,38 @@ export default function App() {
                           fontSize: "clamp(2.5rem, 5vw, 3.7rem)", fontWeight: 900,
                           lineHeight: 1.1, color: "#0A0A0A", marginBottom: "1.5rem"
                       }}>
-                          The Internet's Most<br />
+                          Join the Private <br />
                           <span style={{
                               color: "#FF4D00",
                               background: "linear-gradient(135deg, #FF4D00, #FF6B35)",
                               WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent"
-                          }}>Rewarding Creator</span><br />
-                          Network.
+                          }}>Telegram </span>
+                          Where <span style={{
+                              color: "#FF4D00",
+                              background: "linear-gradient(135deg, #FF4D00, #FF6B35)",
+                              WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent"
+                          }}>Creators</span> Win.
                       </h1>
 
                       <p style={{
                           maxWidth: 500, marginBottom: "2.5rem",
                           fontSize: "1.15rem", color: "#555", lineHeight: 1.7, fontWeight: 400
                       }}>
-                          Join the TNT Creator community. Get paid to post, access viral blueprints,
-                          and connect with <strong style={{ color: "#0A0A0A" }}>47,000+ creators</strong> already changing their lives.
+                          Join a high-performing network of creators sharing viral strategies, real-time insights, and proven systems that drive results. No fluff — just what works.
                       </p>
 
                       <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+                          
+                          <a
+                              href="#telegram"
+                              style={{
+                                  background: "#fff", color: "#0A0A0A", padding: "18px 36px",
+                                  borderRadius: 50, fontWeight: 700, fontSize: "1.05rem",
+                                  textDecoration: "none", border: "2px solid #e5e5e5"
+                              }}
+                          >
+                               View Inside →
+                          </a>
                           <a
                               href="#"
                               style={{
@@ -249,17 +263,7 @@ export default function App() {
                                   display: "inline-block"
                               }}
                           >
-                              Become a Creator →
-                          </a>
-                          <a
-                              href="#telegram"
-                              style={{
-                                  background: "#fff", color: "#0A0A0A", padding: "18px 36px",
-                                  borderRadius: 50, fontWeight: 700, fontSize: "1.05rem",
-                                  textDecoration: "none", border: "2px solid #e5e5e5"
-                              }}
-                          >
-                              Join Telegram
+                              Join Telegram →
                           </a>
                       </div>
                   </div>
@@ -321,7 +325,7 @@ export default function App() {
                     Where <br/><span style={{ color: "#FF4D00" }}>Winners</span> Live.
                   </h2>
                   <p style={{ color: "#AAA", fontSize: "1.1rem", margin: "1.5rem 0 2.5rem", lineHeight: 1.6 }}>
-                    Don't miss out on real-time drops, collab requests, and our 47K+ creator community.
+                    Don’t miss out on real-time drops, collab requests, and strategies that creators are using right now to grow and monetize.
                   </p>
                   <a href="#" style={{
                     display: "flex", alignItems: "center", justifyContent: "center", gap: "1rem",
@@ -366,8 +370,9 @@ export default function App() {
           <div style={{ marginBottom: "2rem" }}>
             <span style={{ color: colors.accent, fontWeight: 800, fontSize: "0.85rem", letterSpacing: "2px" }}>SYSTEM PERFORMANCE</span>
             <h2 style={{ fontSize: "clamp(2.5rem, 6vw, 3rem)", fontWeight: 900, margin: "0.5rem 0" }}>
-              Massive scale. <span style={{ color: "#FF5F00" }}>Measured.</span>
+              Real Results. <span style={{ color: "#FF5F00" }}>Tracked Daily.</span>
             </h2>
+            <p style={{ color: "#666", fontSize: "1rem" }}>Inside the Telegram, performance isn’t guessed — it’s shared, analyzed, and improved together.</p>
           </div>
 
           <div style={{ width: "100%", background: colors.bg, border: `1px solid ${colors.border}`, borderRadius: "32px", padding: "3.5rem", marginBottom: "2rem", boxShadow: "0 20px 40px rgba(0,0,0,0.03)" }}>
@@ -402,7 +407,7 @@ export default function App() {
           padding: "3.5rem" 
         }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "3rem" }}>
-            <h3 style={{ fontSize: "1.75rem", fontWeight: 800 }}>Top Networks</h3>
+            <h3 style={{ fontSize: "1.75rem", fontWeight: 800 }}>Top Performing Networks</h3>
             <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
               <div style={{ width: 8, height: 8, background: colors.accent, borderRadius: "50%" }} />
               <span style={{ fontSize: "0.75rem", fontWeight: 700, color: colors.textSecondary }}>LIVE NOW</span>
@@ -445,7 +450,7 @@ export default function App() {
             <h2 style={{ fontSize: "clamp(2.5rem, 6vw, 3rem)", fontWeight: 900, margin: "1rem 0" }}>
               The proof is in the <span style={{ color: "#FF4D00" }}>results</span>
             </h2>
-            <p style={{ color: "#666", fontSize: "1rem" }}>Join 15,000+ top-tier creators scaling with our engine.</p>
+            {/* <p style={{ color: "#666", fontSize: "1rem" }}>Join 15,000+ top-tier creators scaling with our engine.</p> */}
           </div>
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(500px, 1fr))", gap: "2.5rem" }}>
@@ -480,10 +485,11 @@ export default function App() {
           <Reveal>
             <div style={{ textAlign: "center", marginBottom: "3rem" }}>
               <p style={{ color: "#FF4D00", fontWeight: 700, fontSize: "0.8rem", letterSpacing: "0.15em", textTransform: "uppercase" }}>Social Proof</p>
-              <h2 style={{ fontWeight: 900, fontSize: "clamp(2.5rem, 6vw, 3rem)", color: "#0A0A0A" }}>
+              <h2 style={{ fontWeight: 900, fontSize: "clamp(2.5rem, 6vw, 3rem)", color: "#0A0A0A", marginBottom:"1rem" }}>
                 3,000+ Testimonials<br />
                 <span style={{ color: "#FF4D00" }}>& Live Reviews</span>
               </h2>
+              <p style={{ color: "#666", fontSize: "1rem" }}>Real messages. Real wins. Shared daily inside the Telegram.</p>
             </div>
           </Reveal>
 
@@ -548,7 +554,7 @@ export default function App() {
                 <img src="/images/new2.png" alt="Icon" className="w-12 h-12 opacity-90" />
               </div>
               <div style={{ fontWeight: 700, fontSize: "clamp(3rem, 6vw, 3rem)", color: colors.textPrimary }}>${(payments / 1000000).toFixed(1)}M+</div>
-              <p style={{ color: colors.textSecondary, fontSize: "0.9rem", fontWeight: 700, marginTop: "1rem", textTransform: "uppercase" }}>Total Creator Payouts</p>
+              <p style={{ color: colors.textSecondary, fontSize: "0.9rem", fontWeight: 700, marginTop: "1rem", textTransform: "uppercase" }}>Total Earnings Tracked</p>
             </div>
           </div>
 
@@ -580,10 +586,10 @@ export default function App() {
           }} />
           <div style={{ flex: "2 1 500px" }}>
             <h2 style={{ fontWeight: 900, fontSize: "clamp(2.5rem, 6vw, 3rem)", lineHeight: 1.1, marginBottom: "1.5rem" }}>
-              Ready to get paid <br /> <span style={{ color: colors.accent }}>for your content?</span>
+              Ready to Get Inside?
             </h2>
             <p style={{ color: colors.textSecondary, fontSize: "1.1rem", maxWidth: "500px", lineHeight: 1.6 }}>
-              Join 47,000+ creators earning today. Get approved in under 24 hours.
+              Join 47,000+ creators already inside. Get instant access to strategies, insights, and opportunities.
             </p>
           </div>
           <div style={{ flex: "1 1 200px", display: "flex", flexDirection: "column", alignItems: "center", gap: "1rem" }}>
@@ -596,7 +602,7 @@ export default function App() {
                 boxShadow: isHovered ? "0 15px 30px rgba(255, 95, 0, 0.25)" : "0 8px 15px rgba(255, 95, 0, 0.1)",
               }}
             >
-              Become a Creator →
+              Join Telegram Now →
             </a>
             <span style={{ fontSize: "0.8rem", color: "#999", fontWeight: 600 }}>No credit card required</span>
           </div>

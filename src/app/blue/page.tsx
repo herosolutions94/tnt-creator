@@ -6,10 +6,10 @@ import React, { useEffect, useRef, useState } from "react";
 /* ─── DATA ──────────────────────────────────────────────── */
 
 const telegramPerks = [
-  { icon: "/images/new5.png", title: "Daily Viral Scripts", desc: "Get fresh content scripts every morning, curated by our top creators and marketing team." },
-  { icon: "/images/new6.png", title: "Live Analytics Drops", desc: "We share real numbers — what's working right now on TikTok, Reels, and Shorts." },
-  { icon: "/images/new7.png", title: "Exclusive Challenges", desc: "Monthly creator challenges with cash prizes up to $5,000 for top performers." },
-  { icon: "/images/new8.png", title: "Collab Matching", desc: "Get matched with other creators in your niche for duets and brand crossovers." },
+  { icon: "/images/new5.png", title: "Daily Viral Scripts", desc: "Ready-to-use content ideas and scripts crafted from what’s trending right now." },
+  { icon: "/images/new6.png", title: "Live Analytics Drops", desc: "See what’s working in real time across niches, formats, and platforms." },
+  { icon: "/images/new7.png", title: "Exclusive Challenges", desc: "Monthly challenges designed to push growth, consistency, and earnings." },
+  { icon: "/images/new8.png", title: "Collab Matching", desc: "Connect with creators for shoutouts, partnerships, and scaling faster." },
 ];
 
 const topGroups = [
@@ -82,11 +82,10 @@ const stats = [
 ];
 
 const miniStats = [
-  { num: "24/7", label: "Support" },
-  { num: "Instant", label: "Payouts" },
+  { num: "24/7", label: "Activity" },
+  { num: "Instant", label: "Updates" },
   { num: "Global", label: "Network" },
 ];
-
 const chartData = [
   { month: "Oct", value: 180 },
   { month: "Nov", value: 310 },
@@ -174,7 +173,7 @@ export default function App() {
               boxShadow: "0 4px 14px rgba(255,77,0,0.3)"
             }}
           >
-            Become a Creator →
+            Join Telegram →
           </a>
         </div>
       </nav>
@@ -221,21 +220,24 @@ export default function App() {
                           fontSize: "clamp(2.5rem, 5vw, 3.7rem)", fontWeight: 900,
                           lineHeight: 1.1, color: "#0A0A0A", marginBottom: "1.5rem"
                       }}>
-                          The Internet's Most<br />
+                          Join the Private<br />
                           <span style={{
                               color: "#00c3ff",
                               background: "linear-gradient(135deg, #00a2ff, #00c3ff)",
                               WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent"
-                          }}>Rewarding Creator</span><br />
-                          Network.
+                          }}>Telegram</span>
+                           Where  <span style={{
+                              color: "#00c3ff",
+                              background: "linear-gradient(135deg, #00a2ff, #00c3ff)",
+                              WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent"
+                          }}>Creators</span> Win.
                       </h1>
 
                       <p style={{
                           maxWidth: 500, marginBottom: "2.5rem",
                           fontSize: "1.15rem", color: "#555", lineHeight: 1.7, fontWeight: 400
                       }}>
-                          Join the TNT Creator community. Get paid to post, access viral blueprints,
-                          and connect with <strong style={{ color: "#0A0A0A" }}>47,000+ creators</strong> already changing their lives.
+                          Join a high-performing network of creators sharing viral strategies, real-time insights, and proven systems that drive results. No fluff — just what works.
                       </p>
 
                       <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
@@ -248,7 +250,7 @@ export default function App() {
                                   display: "inline-block"
                               }}
                           >
-                              Become a Creator →
+                              View Inside →
                           </a>
                           <a
                               href="#telegram"
