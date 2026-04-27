@@ -6,10 +6,10 @@ import React, { useEffect, useRef, useState } from "react";
 /* ─── DATA ──────────────────────────────────────────────── */
 
 const telegramPerks = [
-  { icon: "/images/new5.png", title: "Daily Viral Scripts", desc: "Ready-to-use content ideas and scripts crafted from what’s trending right now." },
-  { icon: "/images/new6.png", title: "Live Analytics Drops", desc: "See what’s working in real time across niches, formats, and platforms." },
-  { icon: "/images/new7.png", title: "Exclusive Challenges", desc: "Monthly challenges designed to push growth, consistency, and earnings." },
-  { icon: "/images/new8.png", title: "Collab Matching", desc: "Connect with creators for shoutouts, partnerships, and scaling faster." },
+  { icon: "/images/new5.png", title: "Daily Updates", desc: "Fresh insights and trends shared every day." },
+  { icon: "/images/new6.png", title: "Live Drops", desc: "Important updates, opportunities, and resources in real time." },
+  { icon: "/images/new7.png", title: "Community Access", desc: "Connect with thousands of active members." },
+  { icon: "/images/new8.png", title: "Discussions That Matter", desc: "No spam — only useful conversations and insights." },
 ];
 
 const topGroups = [
@@ -27,7 +27,7 @@ const crazyStories = [
       followers: "1.2M",
       tag: "REVENUE GROWTH",
       metric: "$52,000/mo",
-      story: "I was working two jobs and streaming to 5 people. Within 3 months of using the platform's distribution tools, I hit my first five-figure month. The data-driven insights allowed me to quit my day job entirely.",
+      story: "I joined the Telegram out of curiosity, but I stayed because the updates are actually useful. There’s always something valuable shared every day.",
       color: "#FF4D00"
     },
     {
@@ -37,7 +37,7 @@ const crazyStories = [
       followers: "850k",
       tag: "GLOBAL EXPANSION",
       metric: "Vertical Scale",
-      story: "Most platforms box you into one region. We managed to break into the Asian market overnight by leveraging localized engagement metrics. Our growth curve went from flat to vertical in 48 hours.",
+      story: "I’ve joined a lot of channels before, but this one actually shares useful updates from different regions. You get to see what’s trending globally.",
       color: "#000000"
     },
     {
@@ -47,7 +47,7 @@ const crazyStories = [
       followers: "400k",
       tag: "AUDIENCE RETENTION",
       metric: "+85% Loyalty",
-      story: "We weren't just looking for more views; we wanted a community. The built-in CRM tools allowed us to segment our top 1% of fans and double our recurring monthly revenue through private access.",
+      story: "I wasn’t just looking for another channel, I wanted something active. This one actually feels like a real community.",
       color: "#000000"
     },
     {
@@ -57,34 +57,42 @@ const crazyStories = [
       followers: "2.1M",
       tag: "CONTENT SYNDICATION",
       metric: "12 Channels",
-      story: "Managing 12 different social channels was killing my creativity. The auto-optimization engine handles the distribution while I focus on the camera. My output has doubled with half the effort.",
+      story: "I used to jump between different channels, but now I just check this Telegram. Everything important is shared in one place.",
       color: "#FF4D00"
     }
   ];
 
 const testimonialImages = [
-  { x: 5, y: 8, rotate: -3, scale: 1.0, zIndex: 3, color: "#FF4D00", initials: "FA", stars: 5, text: "Made $8K first month!", name: "Fatima A." },
-  { x: 22, y: 40, rotate: 2, scale: 0.95, zIndex: 1, color: "#FF6B35", initials: "JK", stars: 5, text: "300K followers in 60 days", name: "Jordan K." },
-  { x: 42, y: 12, rotate: -1, scale: 1.05, zIndex: 4, color: "#FF4D00", initials: "PM", stars: 5, text: "Got a full-time offer!", name: "Priya M." },
-  { x: 60, y: 45, rotate: 3, scale: 0.9, zIndex: 2, color: "#E63E00", initials: "SA", stars: 5, text: "Quit my 9-5 forever 🔥", name: "Sam A." },
-  { x: 75, y: 10, rotate: -2, scale: 1.0, zIndex: 5, color: "#FF4D00", initials: "RK", stars: 5, text: "$15K in month 2", name: "Raj K." },
-  { x: 2, y: 62, rotate: 1, scale: 0.92, zIndex: 2, color: "#FF6B35", initials: "ML", stars: 5, text: "Best decision of my life", name: "Maya L." },
-  { x: 30, y: 70, rotate: -4, scale: 1.0, zIndex: 3, color: "#FF4D00", initials: "HZ", stars: 5, text: "1M views first video!", name: "Hassan Z." },
-  { x: 55, y: 68, rotate: 2, scale: 0.98, zIndex: 1, color: "#E63E00", initials: "NK", stars: 5, text: "Income tripled in 90 days", name: "Nour K." },
-  { x: 80, y: 55, rotate: -1, scale: 1.02, zIndex: 4, color: "#FF4D00", initials: "AC", stars: 5, text: "Agency at 24 years old", name: "Aisha C." },
+  { x: 5, y: 8, rotate: -3, scale: 1.0, zIndex: 3, color: "#FF4D00", initials: "FA", stars: 5, text: "Actually useful updates every day", name: "Fatima A." },
+
+  { x: 22, y: 40, rotate: 2, scale: 0.95, zIndex: 1, color: "#FF6B35", initials: "JK", stars: 5, text: "One of the few channels worth joining", name: "Jordan K." },
+
+  { x: 42, y: 12, rotate: -1, scale: 1.05, zIndex: 4, color: "#FF4D00", initials: "PM", stars: 5, text: "Clean, simple and straight to the point", name: "Priya M." },
+
+  { x: 60, y: 45, rotate: 3, scale: 0.9, zIndex: 2, color: "#E63E00", initials: "SA", stars: 5, text: "No spam, just good content", name: "Sam A." },
+
+  { x: 75, y: 10, rotate: -2, scale: 1.0, zIndex: 5, color: "#FF4D00", initials: "RK", stars: 5, text: "I check this channel daily now", name: "Raj K." },
+
+  { x: 2, y: 62, rotate: 1, scale: 0.92, zIndex: 2, color: "#FF6B35", initials: "ML", stars: 5, text: "Didn’t expect much, but it’s actually good", name: "Maya L." },
+
+  { x: 30, y: 70, rotate: -4, scale: 1.0, zIndex: 3, color: "#FF4D00", initials: "HZ", stars: 5, text: "Always something new being shared", name: "Hassan Z." },
+
+  { x: 55, y: 68, rotate: 2, scale: 0.98, zIndex: 1, color: "#E63E00", initials: "NK", stars: 5, text: "Better than most Telegram groups", name: "Nour K." },
+
+  { x: 80, y: 55, rotate: -1, scale: 1.02, zIndex: 4, color: "#FF4D00", initials: "AC", stars: 5, text: "Joined and stayed for the value", name: "Aisha C." },
 ];
 
 const stats = [
-  { number: "47,200+", label: "Active Members", icon: "/images/new1.png" },
-  { number: "$2.8M+", label: "Total Paid Out", icon: "/images/new2.png" },
-  { number: "500M+", label: "Views Generated", icon: "/images/new3.png" },
-  { number: "3,000+", label: "Verified Reviews", icon: "/images/new4.png" },
+  { number: "47,200+", label: "Members", icon: "/images/new1.png" },
+  { number: "$2.8M+", label: "Value Shared", icon: "/images/new2.png" },
+  { number: "500M+", label: "Reach Insights", icon: "/images/new3.png" },
+  { number: "3,000+", label: "Active Discussions", icon: "/images/new4.png" },
 ];
 
 const miniStats = [
   { num: "24/7", label: "Activity" },
   { num: "Instant", label: "Updates" },
-  { num: "Global", label: "Network" },
+  { num: "Global", label: "Community" },
 ];
 
 const chartData = [
@@ -214,46 +222,33 @@ export default function App() {
                       }}>
                           <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#FF4D00", display: "inline-block" }} />
                           <span style={{ color: "#FF4D00", fontWeight: 700, fontSize: "0.78rem", letterSpacing: "0.1em", textTransform: "uppercase" }}>
-                              Open — Join 47,000+ Creators
+                              47,000+ members inside
                           </span>
                       </div>
 
                       <h1 style={{
-                          fontSize: "clamp(2.5rem, 5vw, 3.7rem)", fontWeight: 900,
+                          fontSize: "clamp(2.5rem, 5vw, 3.5rem)", fontWeight: 900,
                           lineHeight: 1.1, color: "#0A0A0A", marginBottom: "1.5rem"
                       }}>
-                          Join the Private <br />
+                          Join the Private 
                           <span style={{
                               color: "#FF4D00",
                               background: "linear-gradient(135deg, #FF4D00, #FF6B35)",
                               WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent"
-                          }}>Telegram </span>
-                          Where <span style={{
-                              color: "#FF4D00",
-                              background: "linear-gradient(135deg, #FF4D00, #FF6B35)",
-                              WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent"
-                          }}>Creators</span> Win.
+                          }}> Telegram </span>
+                          Everyone’s <br/>Talking About
                       </h1>
 
                       <p style={{
                           maxWidth: 500, marginBottom: "2.5rem",
                           fontSize: "1.15rem", color: "#555", lineHeight: 1.7, fontWeight: 400
                       }}>
-                          Join a high-performing network of creators sharing viral strategies, real-time insights, and proven systems that drive results. No fluff — just what works.
+                          Get access to real-time insights, trending opportunities, and valuable drops shared daily. No noise — only what matters.
                       </p>
 
                       <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
                           
-                          <a
-                              href="#telegram"
-                              style={{
-                                  background: "#fff", color: "#0A0A0A", padding: "18px 36px",
-                                  borderRadius: 50, fontWeight: 700, fontSize: "1.05rem",
-                                  textDecoration: "none", border: "2px solid #e5e5e5"
-                              }}
-                          >
-                               View Inside →
-                          </a>
+                          
                           <a
                               href="#"
                               style={{
@@ -264,6 +259,16 @@ export default function App() {
                               }}
                           >
                               Join Telegram →
+                          </a>
+                          <a
+                              href="#telegram"
+                              style={{
+                                  background: "#fff", color: "#0A0A0A", padding: "18px 36px",
+                                  borderRadius: 50, fontWeight: 700, fontSize: "1.05rem",
+                                  textDecoration: "none", border: "2px solid #e5e5e5"
+                              }}
+                          >
+                               See What’s Inside →
                           </a>
                       </div>
                   </div>
@@ -322,10 +327,10 @@ export default function App() {
                 <div style={{ position: "relative", zIndex: 1 }}>
                   <span style={{ color: "#FF4D00", fontWeight: 800, fontSize: "0.8rem", letterSpacing: "2px", textTransform: "uppercase" }}>The Inner Circle</span>
                   <h2 style={{ color: "#fff", fontSize: "clamp(2.5rem, 6vw, 3rem)", fontWeight: 900, marginTop: "1rem", lineHeight: 1.1 }}>
-                    Where <br/><span style={{ color: "#FF4D00" }}>Winners</span> Live.
+                    Inside the Telegram
                   </h2>
                   <p style={{ color: "#AAA", fontSize: "1.1rem", margin: "1.5rem 0 2.5rem", lineHeight: 1.6 }}>
-                    Don’t miss out on real-time drops, collab requests, and strategies that creators are using right now to grow and monetize.
+                    This is where people stay ahead — with real-time updates, shared insights, and opportunities you won’t find publicly.
                   </p>
                   <a href="#" style={{
                     display: "flex", alignItems: "center", justifyContent: "center", gap: "1rem",
@@ -370,9 +375,9 @@ export default function App() {
           <div style={{ marginBottom: "2rem" }}>
             <span style={{ color: colors.accent, fontWeight: 800, fontSize: "0.85rem", letterSpacing: "2px" }}>SYSTEM PERFORMANCE</span>
             <h2 style={{ fontSize: "clamp(2.5rem, 6vw, 3rem)", fontWeight: 900, margin: "0.5rem 0" }}>
-              Real Results. <span style={{ color: "#FF5F00" }}>Tracked Daily.</span>
+              What’s Being Shared Daily
             </h2>
-            <p style={{ color: "#666", fontSize: "1rem" }}>Inside the Telegram, performance isn’t guessed — it’s shared, analyzed, and improved together.</p>
+            <p style={{ color: "#666", fontSize: "1rem" }}>Inside the Telegram, members exchange real value — from insights to opportunities.</p>
           </div>
 
           <div style={{ width: "100%", background: colors.bg, border: `1px solid ${colors.border}`, borderRadius: "32px", padding: "3.5rem", marginBottom: "2rem", boxShadow: "0 20px 40px rgba(0,0,0,0.03)" }}>
@@ -486,10 +491,10 @@ export default function App() {
             <div style={{ textAlign: "center", marginBottom: "3rem" }}>
               <p style={{ color: "#FF4D00", fontWeight: 700, fontSize: "0.8rem", letterSpacing: "0.15em", textTransform: "uppercase" }}>Social Proof</p>
               <h2 style={{ fontWeight: 900, fontSize: "clamp(2.5rem, 6vw, 3rem)", color: "#0A0A0A", marginBottom:"1rem" }}>
-                3,000+ Testimonials<br />
-                <span style={{ color: "#FF4D00" }}>& Live Reviews</span>
+                3,000+ Messages<br />
+                <span style={{ color: "#FF4D00" }}>& Reviews</span>
               </h2>
-              <p style={{ color: "#666", fontSize: "1rem" }}>Real messages. Real wins. Shared daily inside the Telegram.</p>
+              <p style={{ color: "#666", fontSize: "1rem" }}>Real conversations. Real people. Active every day.</p>
             </div>
           </Reveal>
 
@@ -538,7 +543,7 @@ export default function App() {
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: "2rem" }}>
             <span style={{ color: colors.accent, fontWeight: 800, fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase" }}>Real-Time Metrics</span>
-            <h2 style={{ fontWeight: 900, fontSize: "clamp(2.5rem, 6vw, 3rem)", marginTop: "1rem" }}>The numbers don't lie</h2>
+            <h2 style={{ fontWeight: 900, fontSize: "clamp(2.5rem, 6vw, 3rem)", marginTop: "1rem" }}>The Community Keeps Growing</h2>
           </div>
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "2.5rem", marginBottom: "5rem" }}>
@@ -547,14 +552,14 @@ export default function App() {
                 <img src="/images/new1.png" alt="Icon" className="w-12 h-12 opacity-90" />
               </div>
               <div style={{ fontWeight: 700, fontSize: "clamp(2.5rem, 6vw, 3rem)", color: colors.textPrimary }}>{memberCount.toLocaleString()}</div>
-              <p style={{ color: colors.textSecondary, fontSize: "0.9rem", fontWeight: 700, marginTop: "1rem", textTransform: "uppercase" }}>Active Network Members</p>
+              <p style={{ color: colors.textSecondary, fontSize: "0.9rem", fontWeight: 700, marginTop: "1rem", textTransform: "uppercase" }}>Members</p>
             </div>
             <div style={{ background: '#fff', border: `1px solid ${colors.border}`, borderRadius: 32, padding: "4rem 2rem", textAlign: "center", boxShadow: "0 15px 35px rgba(0,0,0,0.03)" }}>
               <div className="flex items-center justify-center mb-6">
                 <img src="/images/new2.png" alt="Icon" className="w-12 h-12 opacity-90" />
               </div>
-              <div style={{ fontWeight: 700, fontSize: "clamp(3rem, 6vw, 3rem)", color: colors.textPrimary }}>${(payments / 1000000).toFixed(1)}M+</div>
-              <p style={{ color: colors.textSecondary, fontSize: "0.9rem", fontWeight: 700, marginTop: "1rem", textTransform: "uppercase" }}>Total Earnings Tracked</p>
+              <div style={{ fontWeight: 700, fontSize: "clamp(3rem, 6vw, 3rem)", color: colors.textPrimary }}>Constant</div>
+              <p style={{ color: colors.textSecondary, fontSize: "0.9rem", fontWeight: 700, marginTop: "1rem", textTransform: "uppercase" }}>Daily Activity</p>
             </div>
           </div>
 
@@ -586,10 +591,10 @@ export default function App() {
           }} />
           <div style={{ flex: "2 1 500px" }}>
             <h2 style={{ fontWeight: 900, fontSize: "clamp(2.5rem, 6vw, 3rem)", lineHeight: 1.1, marginBottom: "1.5rem" }}>
-              Ready to Get Inside?
+              Ready to Join?
             </h2>
             <p style={{ color: colors.textSecondary, fontSize: "1.1rem", maxWidth: "500px", lineHeight: 1.6 }}>
-              Join 47,000+ creators already inside. Get instant access to strategies, insights, and opportunities.
+              Get instant access to the Telegram channel and see what everyone is talking about.
             </p>
           </div>
           <div style={{ flex: "1 1 200px", display: "flex", flexDirection: "column", alignItems: "center", gap: "1rem" }}>
@@ -604,7 +609,7 @@ export default function App() {
             >
               Join Telegram Now →
             </a>
-            <span style={{ fontSize: "0.8rem", color: "#999", fontWeight: 600 }}>No credit card required</span>
+            {/* <span style={{ fontSize: "0.8rem", color: "#999", fontWeight: 600 }}>No credit card required</span> */}
           </div>
         </div>
       </section>
