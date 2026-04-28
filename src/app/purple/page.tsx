@@ -253,14 +253,14 @@ export default function App() {
           pointerEvents: "none",
         }} />
 
-        <div style={{
+        {/* <div style={{
           position: "absolute",
           inset: 0,
           backgroundImage:
             "linear-gradient(#6a12890d 1px, transparent 1px), linear-gradient(90deg, #6a12890d 1px, transparent 1px)",
           backgroundSize: "60px 60px",
           pointerEvents: "none",
-        }} />
+        }} /> */}
 
         {/* HERO GRID */}
         <div
