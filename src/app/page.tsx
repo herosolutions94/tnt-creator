@@ -621,8 +621,8 @@ export default function App() {
               <div className="flex items-center justify-center mb-6">
                 <img src="/images/new2.png" alt="Icon" className="w-12 h-12 opacity-90" />
               </div>
-              <div style={{ fontWeight: 700, fontSize: "clamp(3rem, 6vw, 3rem)", color: colors.textPrimary }}>Constant</div>
-              <p style={{ color: colors.textSecondary, fontSize: "0.9rem", fontWeight: 700, marginTop: "1rem", textTransform: "uppercase" }}>Daily Activity</p>
+              <div style={{ fontWeight: 700, fontSize: "clamp(3rem, 6vw, 3rem)", color: colors.textPrimary }}>$2.8M+</div>
+              <p style={{ color: colors.textSecondary, fontSize: "0.9rem", fontWeight: 700, marginTop: "1rem", textTransform: "uppercase" }}>Total Payouts</p>
             </div>
           </div>
 
