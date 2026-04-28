@@ -192,7 +192,7 @@ export default function App() {
       <nav style={{
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
         background: "rgba(255,255,255,0.95)", backdropFilter: "blur(12px)",
-        borderBottom: "1px solid rgba(255,77,0,0.1)",
+        borderBottom: "1px solid #69128913",
         padding: "0 2rem", height: "68px",
         display: "flex", alignItems: "center", justifyContent: "space-between"
       }}>
@@ -209,7 +209,7 @@ export default function App() {
               padding: "10px 22px", borderRadius: 50,
               fontWeight: 700, fontSize: "0.85rem",
               textDecoration: "none", transition: "all 0.2s",
-              boxShadow: "0 4px 14px rgba(255,77,0,0.3)"
+              boxShadow: "0 4px 14px #6a12890d"
             }}
           >
             Join Telegram →
