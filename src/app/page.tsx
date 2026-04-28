@@ -105,6 +105,33 @@ const chartData = [
   { month: "Apr", value: 1120 },
 ];
 
+const floatingStyles = `
+  @keyframes float {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-14px) rotate(1.5deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+  }
+
+  .floating-card {
+    animation: float 7s ease-in-out infinite;
+    transition: all 0.5s ease;
+    will-change: transform;
+  }
+`;
+
+
+const screenshotData = [
+    { src: "/images/screenshot1.png", x: 5, y: 10, rotate: -5, delay: "0s", size: 220 },
+    { src: "/images/screenshot2.png", x: 70, y: 5, rotate: 3, delay: "1s", size: 200 },
+    { src: "/images/screenshot3.png", x: 40, y: 40, rotate: -2, delay: "0.5s", size: 220 },
+    { src: "/images/screenshot4.png", x: 10, y: 60, rotate: 6, delay: "2s", size: 200 },
+    { src: "/images/screenshot5.jpeg", x: 75, y: 60, rotate: -4, delay: "1.5s", size: 210 },
+    { src: "/images/screenshot6.jpeg", x: 45, y: 5, rotate: 2, delay: "0.8s", size: 190 },
+    { src: "/images/screenshot7.jpeg", x: 22, y: 0, rotate: -2, delay: "1.2s", size: 190, z: 7 },
+    { src: "/images/screenshot8.jpeg", x: 60, y: 35, rotate: 2, delay: "1.4s", size: 210, z: 9 },
+    { src: "/images/screenshot9.jpeg", x: 30, y: 55, rotate: -5, delay: "1.6s", size: 185, z: 3 },
+  ];
+
 /* ─── SCROLL REVEAL HOOK ─────────────────────────────────── */
 function useScrollReveal() {
   const ref = useRef<HTMLDivElement>(null);
@@ -153,6 +180,8 @@ export default function App() {
     border: "#EEEEEE",
     success: "#16A34A"
   };
+
+  
 
   const maxVal = Math.max(...chartData.map(d => d.value), 1); 
 
@@ -453,7 +482,7 @@ export default function App() {
           <div style={{ marginBottom: "2rem" }}>
             <span style={{ color: "#FF4D00", fontWeight: 800, fontSize: "0.8rem", letterSpacing: "2px" }}>CASE STUDIES</span>
             <h2 style={{ fontSize: "clamp(2.5rem, 6vw, 3rem)", fontWeight: 900, margin: "1rem 0" }}>
-              The proof is in the <span style={{ color: "#FF4D00" }}>results</span>
+              Crazy Success <span style={{ color: "#FF4D00" }}>Stories</span>
             </h2>
             {/* <p style={{ color: "#666", fontSize: "1rem" }}>Join 15,000+ top-tier creators scaling with our engine.</p> */}
           </div>
@@ -485,56 +514,90 @@ export default function App() {
       </section>
 
       {/* ── TESTIMONIALS ── */}
-      <section style={{ padding: "7rem 1.5rem", background: "#FFFFFF", overflow: "hidden" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <Reveal>
-            <div style={{ textAlign: "center", marginBottom: "3rem" }}>
-              <p style={{ color: "#FF4D00", fontWeight: 700, fontSize: "0.8rem", letterSpacing: "0.15em", textTransform: "uppercase" }}>Social Proof</p>
-              <h2 style={{ fontWeight: 900, fontSize: "clamp(2.5rem, 6vw, 3rem)", color: "#0A0A0A", marginBottom:"1rem" }}>
-                3,000+ Messages<br />
-                <span style={{ color: "#FF4D00" }}>& Reviews</span>
-              </h2>
-              <p style={{ color: "#666", fontSize: "1rem" }}>Real conversations. Real people. Active every day.</p>
-            </div>
-          </Reveal>
-
-          <div style={{ position: "relative", height: 500, marginBottom: "2rem" }}>
-            {testimonialImages.map((t, i) => (
-              <div
-                key={i}
-                style={{
-                  position: "absolute", left: `${t.x}%`, top: `${t.y}%`,
-                  transform: `rotate(${t.rotate}deg) scale(${t.scale})`,
-                  zIndex: t.zIndex,
-                  background: "#fff", border: "2px solid #F0F0F0", borderRadius: 16, padding: "1rem", width: 190,
-                  boxShadow: "0 4px 24px rgba(0,0,0,0.06)"
-                }}
-              >
-                <div style={{ display: "flex", gap: "0.5rem", alignItems: "center", marginBottom: "0.5rem" }}>
-                  <div style={{ width: 30, height: 30, borderRadius: "50%", background: t.color, color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 900, fontSize: "0.8rem" }}>{t.initials}</div>
-                  <div>
-                    <div style={{ fontWeight: 700, fontSize: "0.7rem" }}>{t.name}</div>
-                    <div style={{ color: "#FF4D00", fontSize: "0.6rem" }}>{"★".repeat(t.stars)}</div>
-                  </div>
-                </div>
-                <p style={{ fontSize: "0.8rem", fontWeight: 600 }}>"{t.text}"</p>
-              </div>
-            ))}
+      <section
+        style={{
+          padding: "7rem 1.5rem",
+          background: "radial-gradient(circle at top, #fff 60%, #ffffff 100%)",
+          overflow: "hidden",
+          position: "relative",
+        }}
+      >
+        <div
+          style={{
+            position: "absolute",
+            top: "-100px",
+            left: "50%",
+            transform: "translateX(-50%)",
+            width: "600px",
+            height: "600px",
+            background: "rgba(255,77,0,0.08)",
+            filter: "blur(120px)",
+            borderRadius: "50%",
+          }}
+        />
+        <style>{floatingStyles}</style>
+        
+        <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative" }}>
+          
+          {/* Header Content */}
+          <div style={{ textAlign: "center", marginBottom: "4rem", position: "relative", zIndex: 10 }}>
+            <p style={{ color: "#FF4D00", fontWeight: 700, fontSize: "0.8rem", letterSpacing: "0.15em", textTransform: "uppercase" }}>
+              Social Proof
+            </p>
+            <h2 style={{ fontWeight: 900, fontSize: "clamp(2.5rem, 6vw, 3.5rem)", color: "#0A0A0A", marginBottom: "1rem", lineHeight: 1.1 }}>
+              3,000+ Testimonials<br />
+              <span style={{ color: "#FF4D00" }}>& Live Reviews</span>
+            </h2>
+            <p style={{ color: "#666", fontSize: "1.1rem", maxWidth: "500px", margin: "0 auto" }}>
+              Don't take our word for it. Here are real screenshots from our community members.
+            </p>
           </div>
 
-          <Reveal>
-            <div style={{ textAlign: "center", marginTop: "1rem" }}>
-              <span style={{
-                display: "inline-block",
-                background: "rgba(255,77,0,0.08)", border: "1px solid rgba(255,77,0,0.2)",
-                borderRadius: 50, padding: "10px 24px",
-                color: "#FF4D00", fontWeight: 700, fontSize: "0.88rem"
-              }}>
-                🔥 New reviews coming in every hour
-              </span>
+          {/* Floating Screenshots Container */}
+          <div style={{ position: "relative", height: "600px", width: "100%" }}>
+            {screenshotData.map((img, i) => (
+            <div
+              key={i}
+              className="floating-card"
+              style={{
+                position: "absolute",
+                left: `${img.x}%`,
+                top: `${img.y}%`,
+                animationDelay: img.delay,
+                zIndex: img.z,
+              }}
+            >
+              <img
+                src={img.src}
+                alt="Testimonial Screenshot"
+                style={{
+                  width: img.size,
+                  height: "auto",
+                  borderRadius: "16px",
+                  boxShadow: "0 20px 50px rgba(0,0,0,0.15)",
+                  border: "5px solid white",
+                  transform: `rotate(${img.rotate}deg)`,
+                }}
+              />
             </div>
-          </Reveal>
+          ))}
+          </div>
 
+          {/* Bottom Badge */}
+          <div style={{ textAlign: "center", marginTop: "2rem" }}>
+            <span style={{
+              display: "inline-block",
+              background: "rgba(255,77,0,0.08)",
+              border: "1px solid rgba(255,77,0,0.2)",
+              borderRadius: 50,
+              padding: "12px 28px",
+              color: "#FF4D00",
+              fontWeight: 700,
+              fontSize: "0.9rem"
+            }}>
+              🔥 New reviews coming in every hour
+            </span>
+          </div>
         </div>
       </section>
 
