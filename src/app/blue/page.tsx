@@ -6,10 +6,10 @@ import React, { useEffect, useRef, useState } from "react";
 /* ─── DATA ──────────────────────────────────────────────── */
 
 const telegramPerks = [
-  { icon: "/images/new5.png", title: "Daily Viral Scripts", desc: "Ready-to-use content ideas and scripts crafted from what’s trending right now." },
-  { icon: "/images/new6.png", title: "Live Analytics Drops", desc: "See what’s working in real time across niches, formats, and platforms." },
-  { icon: "/images/new7.png", title: "Exclusive Challenges", desc: "Monthly challenges designed to push growth, consistency, and earnings." },
-  { icon: "/images/new8.png", title: "Collab Matching", desc: "Connect with creators for shoutouts, partnerships, and scaling faster." },
+  { icon: "/images/new5.png", title: "Daily Updates", desc: "Fresh insights and trends shared every day." },
+  { icon: "/images/new6.png", title: "Live Drops", desc: "Important updates, opportunities, and resources in real time." },
+  { icon: "/images/new7.png", title: "Community Access", desc: "Connect with thousands of active members." },
+  { icon: "/images/new8.png", title: "Discussions That Matter", desc: "No spam — only useful conversations and insights." },
 ];
 
 const topGroups = [
@@ -27,8 +27,8 @@ const crazyStories = [
       followers: "1.2M",
       tag: "REVENUE GROWTH",
       metric: "$52,000/mo",
-      story: "I was working two jobs and streaming to 5 people. Within 3 months of using the platform's distribution tools, I hit my first five-figure month. The data-driven insights allowed me to quit my day job entirely.",
-      color: "#00c3ff"
+      story: "I joined the Telegram out of curiosity, but I stayed because the updates are actually useful. There’s always something valuable shared every day.",
+      color: "#07c7e9"
     },
     {
       id: "02",
@@ -37,7 +37,7 @@ const crazyStories = [
       followers: "850k",
       tag: "GLOBAL EXPANSION",
       metric: "Vertical Scale",
-      story: "Most platforms box you into one region. We managed to break into the Asian market overnight by leveraging localized engagement metrics. Our growth curve went from flat to vertical in 48 hours.",
+      story: "I’ve joined a lot of channels before, but this one actually shares useful updates from different regions. You get to see what’s trending globally.",
       color: "#000000"
     },
     {
@@ -47,7 +47,7 @@ const crazyStories = [
       followers: "400k",
       tag: "AUDIENCE RETENTION",
       metric: "+85% Loyalty",
-      story: "We weren't just looking for more views; we wanted a community. The built-in CRM tools allowed us to segment our top 1% of fans and double our recurring monthly revenue through private access.",
+      story: "I wasn’t just looking for another channel, I wanted something active. This one actually feels like a real community.",
       color: "#000000"
     },
     {
@@ -57,35 +57,44 @@ const crazyStories = [
       followers: "2.1M",
       tag: "CONTENT SYNDICATION",
       metric: "12 Channels",
-      story: "Managing 12 different social channels was killing my creativity. The auto-optimization engine handles the distribution while I focus on the camera. My output has doubled with half the effort.",
-      color: "#00c3ff"
+      story: "I used to jump between different channels, but now I just check this Telegram. Everything important is shared in one place.",
+      color: "#07c7e9"
     }
   ];
 
 const testimonialImages = [
-  { x: 5, y: 8, rotate: -3, scale: 1.0, zIndex: 3, color: "#00c3ff", initials: "FA", stars: 5, text: "Made $8K first month!", name: "Fatima A." },
-  { x: 22, y: 40, rotate: 2, scale: 0.95, zIndex: 1, color: "#00c3ff", initials: "JK", stars: 5, text: "300K followers in 60 days", name: "Jordan K." },
-  { x: 42, y: 12, rotate: -1, scale: 1.05, zIndex: 4, color: "#00c3ff", initials: "PM", stars: 5, text: "Got a full-time offer!", name: "Priya M." },
-  { x: 60, y: 45, rotate: 3, scale: 0.9, zIndex: 2, color: "#00c3ff", initials: "SA", stars: 5, text: "Quit my 9-5 forever 🔥", name: "Sam A." },
-  { x: 75, y: 10, rotate: -2, scale: 1.0, zIndex: 5, color: "#00c3ff", initials: "RK", stars: 5, text: "$15K in month 2", name: "Raj K." },
-  { x: 2, y: 62, rotate: 1, scale: 0.92, zIndex: 2, color: "#00c3ff", initials: "ML", stars: 5, text: "Best decision of my life", name: "Maya L." },
-  { x: 30, y: 70, rotate: -4, scale: 1.0, zIndex: 3, color: "#00c3ff", initials: "HZ", stars: 5, text: "1M views first video!", name: "Hassan Z." },
-  { x: 55, y: 68, rotate: 2, scale: 0.98, zIndex: 1, color: "#00c3ff", initials: "NK", stars: 5, text: "Income tripled in 90 days", name: "Nour K." },
-  { x: 80, y: 55, rotate: -1, scale: 1.02, zIndex: 4, color: "#00c3ff", initials: "AC", stars: 5, text: "Agency at 24 years old", name: "Aisha C." },
+  { x: 5, y: 8, rotate: -3, scale: 1.0, zIndex: 3, color: "#07c7e9", initials: "FA", stars: 5, text: "Actually useful updates every day", name: "Fatima A." },
+
+  { x: 22, y: 40, rotate: 2, scale: 0.95, zIndex: 1, color: "#FF6B35", initials: "JK", stars: 5, text: "One of the few channels worth joining", name: "Jordan K." },
+
+  { x: 42, y: 12, rotate: -1, scale: 1.05, zIndex: 4, color: "#07c7e9", initials: "PM", stars: 5, text: "Clean, simple and straight to the point", name: "Priya M." },
+
+  { x: 60, y: 45, rotate: 3, scale: 0.9, zIndex: 2, color: "#E63E00", initials: "SA", stars: 5, text: "No spam, just good content", name: "Sam A." },
+
+  { x: 75, y: 10, rotate: -2, scale: 1.0, zIndex: 5, color: "#07c7e9", initials: "RK", stars: 5, text: "I check this channel daily now", name: "Raj K." },
+
+  { x: 2, y: 62, rotate: 1, scale: 0.92, zIndex: 2, color: "#FF6B35", initials: "ML", stars: 5, text: "Didn’t expect much, but it’s actually good", name: "Maya L." },
+
+  { x: 30, y: 70, rotate: -4, scale: 1.0, zIndex: 3, color: "#07c7e9", initials: "HZ", stars: 5, text: "Always something new being shared", name: "Hassan Z." },
+
+  { x: 55, y: 68, rotate: 2, scale: 0.98, zIndex: 1, color: "#E63E00", initials: "NK", stars: 5, text: "Better than most Telegram groups", name: "Nour K." },
+
+  { x: 80, y: 55, rotate: -1, scale: 1.02, zIndex: 4, color: "#07c7e9", initials: "AC", stars: 5, text: "Joined and stayed for the value", name: "Aisha C." },
 ];
 
 const stats = [
-  { number: "47,200+", label: "Active Members", icon: "/images/new1.png" },
-  { number: "$2.8M+", label: "Total Paid Out", icon: "/images/new2.png" },
-  { number: "500M+", label: "Views Generated", icon: "/images/new3.png" },
-  { number: "3,000+", label: "Verified Reviews", icon: "/images/new4.png" },
+  { number: "47,200+", label: "Members", icon: "/images/blue-user.png" },
+  { number: "$2.8M+", label: "Value Shared", icon: "/images/blue-money.png" },
+  { number: "500M+", label: "Reach Insights", icon: "/images/blue-eye.png" },
+  { number: "3,000+", label: "Active Discussions", icon: "/images/blue-star.png" },
 ];
 
 const miniStats = [
   { num: "24/7", label: "Activity" },
   { num: "Instant", label: "Updates" },
-  { num: "Global", label: "Network" },
+  { num: "Global", label: "Community" },
 ];
+
 const chartData = [
   { month: "Oct", value: 180 },
   { month: "Nov", value: 310 },
@@ -95,6 +104,33 @@ const chartData = [
   { month: "Mar", value: 940 },
   { month: "Apr", value: 1120 },
 ];
+
+const floatingStyles = `
+  @keyframes float {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-14px) rotate(1.5deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+  }
+
+  .floating-card {
+    animation: float 7s ease-in-out infinite;
+    transition: all 0.5s ease;
+    will-change: transform;
+  }
+`;
+
+
+const screenshotData = [
+    { src: "/images/screenshot1.png", x: 5, y: 10, rotate: -5, delay: "0s", size: 220 },
+    { src: "/images/screenshot2.png", x: 70, y: 5, rotate: 3, delay: "1s", size: 200 },
+    { src: "/images/screenshot3.png", x: 40, y: 40, rotate: -2, delay: "0.5s", size: 220 },
+    { src: "/images/screenshot4.png", x: 10, y: 60, rotate: 6, delay: "2s", size: 200 },
+    { src: "/images/screenshot5.jpeg", x: 75, y: 60, rotate: -4, delay: "1.5s", size: 210 },
+    { src: "/images/screenshot6.jpeg", x: 45, y: 5, rotate: 2, delay: "0.8s", size: 190 },
+    { src: "/images/screenshot7.jpeg", x: 22, y: 0, rotate: -2, delay: "1.2s", size: 190, z: 7 },
+    { src: "/images/screenshot8.jpeg", x: 60, y: 35, rotate: 2, delay: "1.4s", size: 210, z: 9 },
+    { src: "/images/screenshot9.jpeg", x: 30, y: 55, rotate: -5, delay: "1.6s", size: 185, z: 3 },
+  ];
 
 /* ─── SCROLL REVEAL HOOK ─────────────────────────────────── */
 function useScrollReveal() {
@@ -127,6 +163,7 @@ function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 }
 
 
+
 /* ─── MAIN PAGE ────────────────────────────────────────── */
 
 export default function App() {
@@ -136,13 +173,15 @@ export default function App() {
 
   const colors = {
     bg: "#FFFFFF",
-    surface: "#F9F9F9",
-    accent: "#00c3ff", 
+    surface: "#f3fcfe",
+    accent: "#07c7e9", 
     textPrimary: "#111111",
     textSecondary: "#666666",
     border: "#EEEEEE",
     success: "#16A34A"
   };
+
+  
 
   const maxVal = Math.max(...chartData.map(d => d.value), 1); 
 
@@ -159,14 +198,14 @@ export default function App() {
       }}>
         <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
           <Link href="/" className="font-display font-black text-2xl tracking-tight" style={{ color: 'var(--brand-cream)' }}>
-            <img src="/images/logo.png" alt="TNT" width={100} height={100} style={{ borderRadius: '8px' , filter:'brightness(0)' }} />
+            <img src="/images/logo.png" alt="TNT" width={100} height={100} style={{ borderRadius: '8px',filter:'brightness(0)' }} />
           </Link>
         </div>
         <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
           <a
             href="#"
             style={{
-              background: "#00c3ff", color: "#fff",
+              background: "#07c7e9", color: "#fff",
               padding: "10px 22px", borderRadius: 50,
               fontWeight: 700, fontSize: "0.85rem",
               textDecoration: "none", transition: "all 0.2s",
@@ -179,154 +218,283 @@ export default function App() {
       </nav>
 
       {/* ── HERO ── */}
-      <section style={{
-          minHeight: "92vh", 
-          display: "flex", 
-          alignItems: "center", 
-          justifyContent: "center", 
-          padding: "9rem 2rem 5rem", 
-          position: "relative", 
+      <section
+        style={{
+          minHeight: "92vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: "9rem 2rem 4rem",
+          position: "relative",
           overflow: "hidden",
-          background: "#FFFFFF"
-      }}>
-          <div style={{ position: "absolute", top: "10%", left: "-100px", width: 500, height: 500, borderRadius: "50%", background: "radial-gradient(circle, rgba(255,77,0,0.1) 0%, transparent 70%)", pointerEvents: "none" }} />
-          <div style={{ position: "absolute", bottom: "5%", right: "-80px", width: 400, height: 400, borderRadius: "50%", background: "radial-gradient(circle, rgba(255,77,0,0.06) 0%, transparent 70%)", pointerEvents: "none" }} />
-          <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(255,77,0,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,77,0,0.03) 1px, transparent 1px)", backgroundSize: "60px 60px", pointerEvents: "none" }} />
+          background: "#FFFFFF",
+        }}
+      >
+        {/* Background effects (same as before) */}
+        <div style={{
+          position: "absolute",
+          top: "10%",
+          left: "-100px",
+          width: 500,
+          height: 500,
+          borderRadius: "50%",
+          background: "radial-gradient(circle, #07c7e90d 0%, transparent 70%)",
+          pointerEvents: "none",
+        }} />
 
-          <div style={{ 
-              position: "relative", 
-              zIndex: 2, 
-              maxWidth: 1200, 
-              width: "100%",
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-              gap: "4rem",
-              alignItems: "center"
-          }}>
-              <Reveal>
-                  <div style={{ textAlign: "left" }}>
-                      <div style={{
-                          display: "inline-flex", alignItems: "center", gap: "0.5rem",
-                          background: "rgb(221 247 255)", border: "1px solid rgb(0 195 255)",
-                          borderRadius: 50, padding: "8px 20px", marginBottom: "1.5rem"
-                      }}>
-                          <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#00c3ff", display: "inline-block" }} />
-                          <span style={{ color: "#00c3ff", fontWeight: 700, fontSize: "0.78rem", letterSpacing: "0.1em", textTransform: "uppercase" }}>
-                              Open — Join 47,000+ Creators
-                          </span>
-                      </div>
+        <div style={{
+          position: "absolute",
+          bottom: "5%",
+          right: "-80px",
+          width: 400,
+          height: 400,
+          borderRadius: "50%",
+          background: "radial-gradient(circle, #07c7e90d 0%, transparent 70%)",
+          pointerEvents: "none",
+        }} />
 
-                      <h1 style={{
-                          fontSize: "clamp(2.5rem, 5vw, 3.7rem)", fontWeight: 900,
-                          lineHeight: 1.1, color: "#0A0A0A", marginBottom: "1.5rem"
-                      }}>
-                          Join the Private<br />
-                          <span style={{
-                              color: "#00c3ff",
-                              background: "linear-gradient(135deg, #00a2ff, #00c3ff)",
-                              WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent"
-                          }}>Telegram</span>
-                           Where  <span style={{
-                              color: "#00c3ff",
-                              background: "linear-gradient(135deg, #00a2ff, #00c3ff)",
-                              WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent"
-                          }}>Creators</span> Win.
-                      </h1>
+        <div style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage:
+            "linear-gradient(#07c7e90d 1px, transparent 1px), linear-gradient(90deg, #07c7e90d 1px, transparent 1px)",
+          backgroundSize: "60px 60px",
+          pointerEvents: "none",
+        }} />
 
-                      <p style={{
-                          maxWidth: 500, marginBottom: "2.5rem",
-                          fontSize: "1.15rem", color: "#555", lineHeight: 1.7, fontWeight: 400
-                      }}>
-                          Join a high-performing network of creators sharing viral strategies, real-time insights, and proven systems that drive results. No fluff — just what works.
-                      </p>
+        {/* HERO GRID */}
+        <div
+          style={{
+            position: "relative",
+            zIndex: 2,
+            maxWidth: 1200,
+            width: "100%",
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+            gap: "4rem",
+            alignItems: "center",
+          }}
+        >
+          {/* LEFT CONTENT */}
+          <Reveal>
+            <div style={{ textAlign: "left" }}>
+              <div style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.5rem",
+                background: "#07c7e929",
+                border: "1px solid #07c7e9",
+                borderRadius: 50,
+                padding: "8px 20px",
+                marginBottom: "1.5rem",
+              }}>
+                <span style={{
+                  width: 8,
+                  height: 8,
+                  borderRadius: "50%",
+                  background: "#07c7e9",
+                  display: "inline-block",
+                }} />
+                <span style={{
+                  color: "#07c7e9",
+                  fontWeight: 700,
+                  fontSize: "0.78rem",
+                  letterSpacing: "0.1em",
+                  textTransform: "uppercase",
+                }}>
+                  47,000+ members inside
+                </span>
+              </div>
 
-                      <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
-                          <a
-                              href="#"
-                              style={{
-                                  background: "#00c3ff", color: "#fff", padding: "18px 36px",
-                                  borderRadius: 50, fontWeight: 700, fontSize: "1.05rem",
-                                  textDecoration: "none", boxShadow: "0 8px 32px rgba(255,77,0,0.3)",
-                                  display: "inline-block"
-                              }}
-                          >
-                              View Inside →
-                          </a>
-                          <a
-                              href="#telegram"
-                              style={{
-                                  background: "#fff", color: "#0A0A0A", padding: "18px 36px",
-                                  borderRadius: 50, fontWeight: 700, fontSize: "1.05rem",
-                                  textDecoration: "none", border: "2px solid #e5e5e5"
-                              }}
-                          >
-                              Join Telegram
-                          </a>
-                      </div>
+              <h1 style={{
+                fontSize: "clamp(2.5rem, 5vw, 3.5rem)",
+                fontWeight: 900,
+                lineHeight: 1.1,
+                color: "#0A0A0A",
+                marginBottom: "1.5rem",
+              }}>
+                Join the Private{" "}
+                <span style={{
+                  color: "#07c7e9",
+                  background: "linear-gradient(135deg, #07c7e9, #0587bb)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                }}>
+                  Telegram{" "}
+                </span>
+                Everyone’s <br />
+                Talking About
+              </h1>
+
+              <p style={{
+                maxWidth: 500,
+                marginBottom: "2.5rem",
+                fontSize: "1.15rem",
+                color: "#555",
+                lineHeight: 1.7,
+              }}>
+                Get access to real-time insights, trending opportunities, and valuable drops shared daily.
+              </p>
+
+              <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+                <a
+                  href="#"
+                  style={{
+                    background: "#07c7e9",
+                    color: "#fff",
+                    padding: "18px 36px",
+                    borderRadius: 50,
+                    fontWeight: 700,
+                    textDecoration: "none",
+                    boxShadow: "0 8px 32px rgba(255,77,0,0.3)",
+                  }}
+                >
+                  Join Telegram →
+                </a>
+
+                <a
+                  href="#telegram"
+                  style={{
+                    background: "#fff",
+                    color: "#0A0A0A",
+                    padding: "18px 36px",
+                    borderRadius: 50,
+                    fontWeight: 700,
+                    textDecoration: "none",
+                    border: "2px solid #e5e5e5",
+                  }}
+                >
+                  See What’s Inside →
+                </a>
+              </div>
+            </div>
+          </Reveal>
+
+          {/* RIGHT IMAGE */}
+          <Reveal delay={200}>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <div
+                style={{
+                  width: "100%",
+                  maxWidth: 500,
+                  // borderRadius: "24px",
+                  overflow: "hidden",
+                  // boxShadow: "0 20px 60px rgba(0,0,0,0.12)",
+                  transform: "rotate(-2deg)",
+                  // border: "1px solid #eee",
+                  // background: "#fff",
+                }}
+              >
+                <img
+                  src="/images/blue-hero.png" 
+                  alt="Telegram Preview"
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                    display: "block",
+                  }}
+                />
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section
+        style={{
+          padding: "2rem 2rem 7rem",
+          background: "#fff",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: 1200,
+            width: "100%",
+          }}
+        >
+          <Reveal delay={200}>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+                gap: "1.5rem",
+                background: "#07c7e926",
+                padding: "2rem",
+                borderRadius: "24px",
+                border: "1px solid #f0f0f0",
+              }}
+            >
+              {stats.map((s) => (
+                <div
+                  key={s.label}
+                  style={{
+                    textAlign: "left",
+                    padding: "1.5rem",
+                    background: "#fff",
+                    borderRadius: "16px",
+                    boxShadow: "0 4px 20px rgba(0,0,0,0.03)",
+                    border: "1px solid #f5f5f5",
+                  }}
+                >
+                  <div style={{ marginBottom: "0.75rem" }}>
+                    <img
+                      src={s.icon}
+                      alt="icon"
+                      width={24}
+                      height={24}
+                      // style={{ filter: "grayscale(1) opacity(0.8)" }}
+                    />
                   </div>
-              </Reveal>
 
-              {/* RIGHT SIDE: Stats Grid */}
-              <Reveal delay={200}>
-                  <div style={{ 
-                      display: "grid", 
-                      gridTemplateColumns: "1fr 1fr", 
-                      gap: "1.5rem",
-                      background: "rgb(236 247 251)",
-                      padding: "2rem",
-                      borderRadius: "24px",
-                      border: "1px solid #f0f0f0",
-                      backdropFilter: "blur(10px)"
-                  }}>
-                      {stats.map((s) => (
-                          <div key={s.label} style={{ 
-                              textAlign: "left", 
-                              padding: "1.5rem", 
-                              background: "#fff", 
-                              borderRadius: "16px",
-                              boxShadow: "0 4px 20px rgba(0,0,0,0.03)",
-                              border: "1px solid #f5f5f5"
-                          }}>
-                              <div style={{ marginBottom: "0.75rem" }}>
-                                  <img 
-                                      src={s.icon} 
-                                      alt='TNT' 
-                                      width={24} 
-                                      height={24} 
-                                      style={{ filter: "grayscale(1) opacity(0.8)" }} 
-                                  />
-                              </div>
-                              <div style={{ fontWeight: 900, fontSize: "1.8rem", color: "#1a1a1a", letterSpacing: "-1px" }}>
-                                  {s.number}
-                              </div>
-                              <div style={{ fontSize: "0.7rem", fontWeight: 700, color: "#888", textTransform: "uppercase", letterSpacing: "0.05em" }}>
-                                  {s.label}
-                              </div>
-                          </div>
-                      ))}
+                  <div
+                    style={{
+                      fontWeight: 900,
+                      fontSize: "1.8rem",
+                      color: "#1a1a1a",
+                      letterSpacing: "-1px",
+                    }}
+                  >
+                    {s.number}
                   </div>
-              </Reveal>
-          </div>
+
+                  <div
+                    style={{
+                      fontSize: "0.7rem",
+                      fontWeight: 700,
+                      color: "#888",
+                      textTransform: "uppercase",
+                      letterSpacing: "0.05em",
+                    }}
+                  >
+                    {s.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        </div>
       </section>
 
       {/* ── TELEGRAM ── */}
-      <section id="telegram" style={{ padding: "8rem 1.5rem", background: "#F8F9FA", position: "relative" }}>
+      <section id="telegram" style={{ padding: "8rem 1.5rem", background: "#f3fcfe", position: "relative" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))", gap: "2.5rem", alignItems: "stretch" }}>
             <Reveal>
               <div style={{ background: "#0A0A0A", borderRadius: 32, padding: "3.5rem 2.5rem", height: "100%", display: "flex", flexDirection: "column", justifyContent: "center", position: "relative", overflow: "hidden" }}>
-                <div style={{ position: "absolute", top: "-20%", right: "-20%", width: "300px", height: "300px", background: "rgba(255,77,0,0.15)", filter: "blur(80px)", borderRadius: "50%" }} />
+                <div style={{ position: "absolute", top: "-20%", right: "-20%", width: "300px", height: "300px", background: "#07c7e94a", filter: "blur(80px)", borderRadius: "50%" }} />
                 <div style={{ position: "relative", zIndex: 1 }}>
-                  <span style={{ color: "#00c3ff", fontWeight: 800, fontSize: "0.8rem", letterSpacing: "2px", textTransform: "uppercase" }}>The Inner Circle</span>
+                  <span style={{ color: "#07c7e9", fontWeight: 800, fontSize: "0.8rem", letterSpacing: "2px", textTransform: "uppercase" }}>The Inner Circle</span>
                   <h2 style={{ color: "#fff", fontSize: "clamp(2.5rem, 6vw, 3rem)", fontWeight: 900, marginTop: "1rem", lineHeight: 1.1 }}>
-                    Where <br/><span style={{ color: "#00c3ff" }}>Winners</span> Live.
+                    Inside the Telegram
                   </h2>
                   <p style={{ color: "#AAA", fontSize: "1.1rem", margin: "1.5rem 0 2.5rem", lineHeight: 1.6 }}>
-                    Don't miss out on real-time drops, collab requests, and our 47K+ creator community.
+                    This is where people stay ahead — with real-time updates, shared insights, and opportunities you won’t find publicly.
                   </p>
                   <a href="#" style={{
                     display: "flex", alignItems: "center", justifyContent: "center", gap: "1rem",
-                    background: "#00c3ff", color: "#fff", padding: "20px", borderRadius: '50px',
+                    background: "#07c7e9", color: "#fff", padding: "20px", borderRadius: '50px',
                     fontWeight: 500, textDecoration: "none", transition: "transform 0.2s"
                   }}>
                     Join Our Telegram
@@ -367,8 +535,9 @@ export default function App() {
           <div style={{ marginBottom: "2rem" }}>
             <span style={{ color: colors.accent, fontWeight: 800, fontSize: "0.85rem", letterSpacing: "2px" }}>SYSTEM PERFORMANCE</span>
             <h2 style={{ fontSize: "clamp(2.5rem, 6vw, 3rem)", fontWeight: 900, margin: "0.5rem 0" }}>
-              Massive scale. <span style={{ color: "#00c3ff" }}>Measured.</span>
+              What’s Being Shared Daily
             </h2>
+            <p style={{ color: "#666", fontSize: "1rem" }}>Inside the Telegram, members exchange real value — from insights to opportunities.</p>
           </div>
 
           <div style={{ width: "100%", background: colors.bg, border: `1px solid ${colors.border}`, borderRadius: "32px", padding: "3.5rem", marginBottom: "2rem", boxShadow: "0 20px 40px rgba(0,0,0,0.03)" }}>
@@ -403,7 +572,7 @@ export default function App() {
           padding: "3.5rem" 
         }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "3rem" }}>
-            <h3 style={{ fontSize: "1.75rem", fontWeight: 800 }}>Top Networks</h3>
+            <h3 style={{ fontSize: "1.75rem", fontWeight: 800 }}>Top Performing Networks</h3>
             <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
               <div style={{ width: 8, height: 8, background: colors.accent, borderRadius: "50%" }} />
               <span style={{ fontSize: "0.75rem", fontWeight: 700, color: colors.textSecondary }}>LIVE NOW</span>
@@ -439,14 +608,14 @@ export default function App() {
       </section>
 
       {/* ── STORIES ── */}
-      <section style={{ padding: "8rem 1.5rem", background: "#F8F9FA", color: "#0A0A0A" }}>
+      <section style={{ padding: "8rem 1.5rem", background: "#f3fcfe", color: "#0A0A0A" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ marginBottom: "2rem" }}>
-            <span style={{ color: "#00c3ff", fontWeight: 800, fontSize: "0.8rem", letterSpacing: "2px" }}>CASE STUDIES</span>
+            <span style={{ color: "#07c7e9", fontWeight: 800, fontSize: "0.8rem", letterSpacing: "2px" }}>CASE STUDIES</span>
             <h2 style={{ fontSize: "clamp(2.5rem, 6vw, 3rem)", fontWeight: 900, margin: "1rem 0" }}>
-              The proof is in the <span style={{ color: "#00c3ff" }}>results</span>
+              Crazy Success <span style={{ color: "#07c7e9" }}>Stories</span>
             </h2>
-            <p style={{ color: "#666", fontSize: "1rem" }}>Join 15,000+ top-tier creators scaling with our engine.</p>
+            {/* <p style={{ color: "#666", fontSize: "1rem" }}>Join 15,000+ top-tier creators scaling with our engine.</p> */}
           </div>
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(500px, 1fr))", gap: "2.5rem" }}>
@@ -457,7 +626,7 @@ export default function App() {
               }}>
                 <div>
                   <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "2rem" }}>
-                    <div style={{ width: 50, height: 50, borderRadius: "12px", background: "rgb(234 249 253)", color: "#00c3ff", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 800 }}>{s.avatar}</div>
+                    <div style={{ width: 50, height: 50, borderRadius: "12px", background: "#07c7e932", color: "#07c7e9", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 800 }}>{s.avatar}</div>
                     <div>
                       <div style={{ fontWeight: 700 }}>{s.handle}</div>
                       <div style={{ fontSize: "0.8rem", color: "#888" }}>{s.followers} Followers</div>
@@ -476,60 +645,95 @@ export default function App() {
       </section>
 
       {/* ── TESTIMONIALS ── */}
-      <section style={{ padding: "7rem 1.5rem", background: "#FFFFFF", overflow: "hidden" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <Reveal>
-            <div style={{ textAlign: "center", marginBottom: "3rem" }}>
-              <p style={{ color: "#00c3ff", fontWeight: 700, fontSize: "0.8rem", letterSpacing: "0.15em", textTransform: "uppercase" }}>Social Proof</p>
-              <h2 style={{ fontWeight: 900, fontSize: "clamp(2.5rem, 6vw, 3rem)", color: "#0A0A0A" }}>
-                3,000+ Testimonials<br />
-                <span style={{ color: "#00c3ff" }}>& Live Reviews</span>
-              </h2>
-            </div>
-          </Reveal>
-
-          <div style={{ position: "relative", height: 500, marginBottom: "2rem" }}>
-            {testimonialImages.map((t, i) => (
-              <div
-                key={i}
-                style={{
-                  position: "absolute", left: `${t.x}%`, top: `${t.y}%`,
-                  transform: `rotate(${t.rotate}deg) scale(${t.scale})`,
-                  zIndex: t.zIndex,
-                  background: "#fff", border: "2px solid #F0F0F0", borderRadius: 16, padding: "1rem", width: 190,
-                  boxShadow: "0 4px 24px rgba(0,0,0,0.06)"
-                }}
-              >
-                <div style={{ display: "flex", gap: "0.5rem", alignItems: "center", marginBottom: "0.5rem" }}>
-                  <div style={{ width: 30, height: 30, borderRadius: "50%", background: t.color, color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 900, fontSize: "0.8rem" }}>{t.initials}</div>
-                  <div>
-                    <div style={{ fontWeight: 700, fontSize: "0.7rem" }}>{t.name}</div>
-                    <div style={{ color: "#00c3ff", fontSize: "0.6rem" }}>{"★".repeat(t.stars)}</div>
-                  </div>
-                </div>
-                <p style={{ fontSize: "0.8rem", fontWeight: 600 }}>"{t.text}"</p>
-              </div>
-            ))}
+      <section
+        style={{
+          padding: "7rem 1.5rem",
+          background: "radial-gradient(circle at top, #fff 60%, #ffffff 100%)",
+          overflow: "hidden",
+          position: "relative",
+        }}
+      >
+        <div
+          style={{
+            position: "absolute",
+            top: "-100px",
+            left: "50%",
+            transform: "translateX(-50%)",
+            width: "600px",
+            height: "600px",
+            background: "#07c7e90b",
+            filter: "blur(120px)",
+            borderRadius: "50%",
+          }}
+        />
+        <style>{floatingStyles}</style>
+        
+        <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative" }}>
+          
+          {/* Header Content */}
+          <div style={{ textAlign: "center", marginBottom: "4rem", position: "relative", zIndex: 10 }}>
+            <p style={{ color: "#07c7e9", fontWeight: 700, fontSize: "0.8rem", letterSpacing: "0.15em", textTransform: "uppercase" }}>
+              Social Proof
+            </p>
+            <h2 style={{ fontWeight: 900, fontSize: "clamp(2.5rem, 6vw, 3.5rem)", color: "#0A0A0A", marginBottom: "1rem", lineHeight: 1.1 }}>
+              3,000+ Testimonials<br />
+              <span style={{ color: "#07c7e9" }}>& Live Reviews</span>
+            </h2>
+            <p style={{ color: "#666", fontSize: "1.1rem", maxWidth: "500px", margin: "0 auto" }}>
+              Don't take our word for it. Here are real screenshots from our community members.
+            </p>
           </div>
 
-          <Reveal>
-            <div style={{ textAlign: "center", marginTop: "1rem" }}>
-              <span style={{
-                display: "inline-block",
-                background: "rgb(239 251 255)", border: "1px solid #00c3ff",
-                borderRadius: 50, padding: "10px 24px",
-                color: "#00c3ff", fontWeight: 700, fontSize: "0.88rem"
-              }}>
-                🔥 New reviews coming in every hour
-              </span>
+          {/* Floating Screenshots Container */}
+          <div style={{ position: "relative", height: "600px", width: "100%" }}>
+            {screenshotData.map((img, i) => (
+            <div
+              key={i}
+              className="floating-card"
+              style={{
+                position: "absolute",
+                left: `${img.x}%`,
+                top: `${img.y}%`,
+                animationDelay: img.delay,
+                zIndex: img.z,
+              }}
+            >
+              <img
+                src={img.src}
+                alt="Testimonial Screenshot"
+                style={{
+                  width: img.size,
+                  height: "auto",
+                  borderRadius: "16px",
+                  boxShadow: "0 20px 50px rgba(0,0,0,0.15)",
+                  border: "5px solid white",
+                  transform: `rotate(${img.rotate}deg)`,
+                }}
+              />
             </div>
-          </Reveal>
+          ))}
+          </div>
 
+          {/* Bottom Badge */}
+          <div style={{ textAlign: "center", marginTop: "2rem" }}>
+            <span style={{
+              display: "inline-block",
+              background: "#07c7e91f",
+              border: "1px solid #07c7e9",
+              borderRadius: 50,
+              padding: "12px 28px",
+              color: "#07c7e9",
+              fontWeight: 700,
+              fontSize: "0.9rem"
+            }}>
+              🔥 New reviews coming in every hour
+            </span>
+          </div>
         </div>
       </section>
 
       {/* ── COUNTERS ── */}
-      <section style={{ padding: "8rem 1.5rem", background: '#F8F9FA' }}>
+      <section style={{ padding: "8rem 1.5rem", background: '#07c7e919' }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: "2rem" }}>
             <span style={{ color: colors.accent, fontWeight: 800, fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase" }}>Real-Time Metrics</span>
@@ -539,17 +743,17 @@ export default function App() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "2.5rem", marginBottom: "5rem" }}>
             <div style={{ background: '#fff', border: `1px solid ${colors.border}`, borderRadius: 32, padding: "4rem 2rem", textAlign: "center", boxShadow: "0 15px 35px rgba(0,0,0,0.03)", position: "relative", overflow: "hidden" }}>
               <div className="flex items-center justify-center mb-6">
-                <img src="/images/new1.png" alt="Icon" className="w-12 h-12 opacity-90" style={{filter:'brightness(1) sepia(0) invert(1)'}}/>
+                <img src="/images/blue-user.png" alt="Icon" className="w-12 h-12 opacity-90" />
               </div>
               <div style={{ fontWeight: 700, fontSize: "clamp(2.5rem, 6vw, 3rem)", color: colors.textPrimary }}>{memberCount.toLocaleString()}</div>
-              <p style={{ color: colors.textSecondary, fontSize: "0.9rem", fontWeight: 700, marginTop: "1rem", textTransform: "uppercase" }}>Active Network Members</p>
+              <p style={{ color: colors.textSecondary, fontSize: "0.9rem", fontWeight: 700, marginTop: "1rem", textTransform: "uppercase" }}>Members</p>
             </div>
             <div style={{ background: '#fff', border: `1px solid ${colors.border}`, borderRadius: 32, padding: "4rem 2rem", textAlign: "center", boxShadow: "0 15px 35px rgba(0,0,0,0.03)" }}>
               <div className="flex items-center justify-center mb-6">
-                <img src="/images/new2.png" alt="Icon" className="w-12 h-12 opacity-90" style={{filter:'brightness(1) sepia(0) invert(1)'}}/>
+                <img src="/images/blue-money.png" alt="Icon" className="w-12 h-12 opacity-90" />
               </div>
-              <div style={{ fontWeight: 700, fontSize: "clamp(3rem, 6vw, 3rem)", color: colors.textPrimary }}>${(payments / 1000000).toFixed(1)}M+</div>
-              <p style={{ color: colors.textSecondary, fontSize: "0.9rem", fontWeight: 700, marginTop: "1rem", textTransform: "uppercase" }}>Total Creator Payouts</p>
+              <div style={{ fontWeight: 700, fontSize: "clamp(3rem, 6vw, 3rem)", color: colors.textPrimary }}>$2.8M+</div>
+              <p style={{ color: colors.textSecondary, fontSize: "0.9rem", fontWeight: 700, marginTop: "1rem", textTransform: "uppercase" }}>Total Payouts</p>
             </div>
           </div>
 
@@ -574,17 +778,17 @@ export default function App() {
             right: "-10%",
             width: "400px",
             height: "400px",
-            background: "rgba(255, 94, 0, 0.07)",
+            background: "#00a1e61a",
             filter: "blur(60px)",
             borderRadius: "50%",
             pointerEvents: "none"
           }} />
           <div style={{ flex: "2 1 500px" }}>
             <h2 style={{ fontWeight: 900, fontSize: "clamp(2.5rem, 6vw, 3rem)", lineHeight: 1.1, marginBottom: "1.5rem" }}>
-              Ready to get paid <br /> <span style={{ color: colors.accent }}>for your content?</span>
+              Ready to Join?
             </h2>
             <p style={{ color: colors.textSecondary, fontSize: "1.1rem", maxWidth: "500px", lineHeight: 1.6 }}>
-              Join 47,000+ creators earning today. Get approved in under 24 hours.
+              Get instant access to the Telegram channel and see what everyone is talking about.
             </p>
           </div>
           <div style={{ flex: "1 1 200px", display: "flex", flexDirection: "column", alignItems: "center", gap: "1rem" }}>
@@ -593,13 +797,13 @@ export default function App() {
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
               style={{
-                background: isHovered ? "#00c3ff" : colors.accent, color: "#fff", padding: "20px 48px", borderRadius: "50px", fontWeight: 700, fontSize: "1.05rem", textDecoration: "none", transition: "all 0.3s",
-                boxShadow: isHovered ? "0 15px 30px rgba(255, 95, 0, 0.25)" : "0 8px 15px rgba(255, 95, 0, 0.1)",
+                background: isHovered ? "#00a1e6" : colors.accent, color: "#fff", padding: "20px 48px", borderRadius: "50px", fontWeight: 700, fontSize: "1.05rem", textDecoration: "none", transition: "all 0.3s",
+                boxShadow: isHovered ? "0 15px 30px #00a1e621" : "0 8px 15px #00a1e629",
               }}
             >
-              Become a Creator →
+              Join Telegram Now →
             </a>
-            <span style={{ fontSize: "0.8rem", color: "#999", fontWeight: 600 }}>No credit card required</span>
+            {/* <span style={{ fontSize: "0.8rem", color: "#999", fontWeight: 600 }}>No credit card required</span> */}
           </div>
         </div>
       </section>

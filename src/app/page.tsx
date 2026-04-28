@@ -218,132 +218,263 @@ export default function App() {
       </nav>
 
       {/* ── HERO ── */}
-      <section style={{
-          minHeight: "92vh", 
-          display: "flex", 
-          alignItems: "center", 
-          justifyContent: "center", 
-          padding: "9rem 2rem 5rem", 
-          position: "relative", 
+      <section
+        style={{
+          minHeight: "92vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: "9rem 2rem 4rem",
+          position: "relative",
           overflow: "hidden",
-          background: "#FFFFFF"
-      }}>
-          <div style={{ position: "absolute", top: "10%", left: "-100px", width: 500, height: 500, borderRadius: "50%", background: "radial-gradient(circle, rgba(255,77,0,0.1) 0%, transparent 70%)", pointerEvents: "none" }} />
-          <div style={{ position: "absolute", bottom: "5%", right: "-80px", width: 400, height: 400, borderRadius: "50%", background: "radial-gradient(circle, rgba(255,77,0,0.06) 0%, transparent 70%)", pointerEvents: "none" }} />
-          <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(255,77,0,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,77,0,0.03) 1px, transparent 1px)", backgroundSize: "60px 60px", pointerEvents: "none" }} />
+          background: "#FFFFFF",
+        }}
+      >
+        {/* Background effects (same as before) */}
+        <div style={{
+          position: "absolute",
+          top: "10%",
+          left: "-100px",
+          width: 500,
+          height: 500,
+          borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(255,77,0,0.1) 0%, transparent 70%)",
+          pointerEvents: "none",
+        }} />
 
-          <div style={{ 
-              position: "relative", 
-              zIndex: 2, 
-              maxWidth: 1200, 
-              width: "100%",
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-              gap: "4rem",
-              alignItems: "center"
-          }}>
-              <Reveal>
-                  <div style={{ textAlign: "left" }}>
-                      <div style={{
-                          display: "inline-flex", alignItems: "center", gap: "0.5rem",
-                          background: "rgba(255,77,0,0.08)", border: "1px solid rgba(255,77,0,0.2)",
-                          borderRadius: 50, padding: "8px 20px", marginBottom: "1.5rem"
-                      }}>
-                          <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#FF4D00", display: "inline-block" }} />
-                          <span style={{ color: "#FF4D00", fontWeight: 700, fontSize: "0.78rem", letterSpacing: "0.1em", textTransform: "uppercase" }}>
-                              47,000+ members inside
-                          </span>
-                      </div>
+        <div style={{
+          position: "absolute",
+          bottom: "5%",
+          right: "-80px",
+          width: 400,
+          height: 400,
+          borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(255,77,0,0.06) 0%, transparent 70%)",
+          pointerEvents: "none",
+        }} />
 
-                      <h1 style={{
-                          fontSize: "clamp(2.5rem, 5vw, 3.5rem)", fontWeight: 900,
-                          lineHeight: 1.1, color: "#0A0A0A", marginBottom: "1.5rem"
-                      }}>
-                          Join the Private 
-                          <span style={{
-                              color: "#FF4D00",
-                              background: "linear-gradient(135deg, #FF4D00, #FF6B35)",
-                              WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent"
-                          }}> Telegram </span>
-                          Everyone’s <br/>Talking About
-                      </h1>
+        <div style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage:
+            "linear-gradient(rgba(255,77,0,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,77,0,0.03) 1px, transparent 1px)",
+          backgroundSize: "60px 60px",
+          pointerEvents: "none",
+        }} />
 
-                      <p style={{
-                          maxWidth: 500, marginBottom: "2.5rem",
-                          fontSize: "1.15rem", color: "#555", lineHeight: 1.7, fontWeight: 400
-                      }}>
-                          Get access to real-time insights, trending opportunities, and valuable drops shared daily. No noise — only what matters.
-                      </p>
+        {/* HERO GRID */}
+        <div
+          style={{
+            position: "relative",
+            zIndex: 2,
+            maxWidth: 1200,
+            width: "100%",
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+            gap: "4rem",
+            alignItems: "center",
+          }}
+        >
+          {/* LEFT CONTENT */}
+          <Reveal>
+            <div style={{ textAlign: "left" }}>
+              <div style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.5rem",
+                background: "rgba(255,77,0,0.08)",
+                border: "1px solid rgba(255,77,0,0.2)",
+                borderRadius: 50,
+                padding: "8px 20px",
+                marginBottom: "1.5rem",
+              }}>
+                <span style={{
+                  width: 8,
+                  height: 8,
+                  borderRadius: "50%",
+                  background: "#FF4D00",
+                  display: "inline-block",
+                }} />
+                <span style={{
+                  color: "#FF4D00",
+                  fontWeight: 700,
+                  fontSize: "0.78rem",
+                  letterSpacing: "0.1em",
+                  textTransform: "uppercase",
+                }}>
+                  47,000+ members inside
+                </span>
+              </div>
 
-                      <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
-                          
-                          
-                          <a
-                              href="#"
-                              style={{
-                                  background: "#FF4D00", color: "#fff", padding: "18px 36px",
-                                  borderRadius: 50, fontWeight: 700, fontSize: "1.05rem",
-                                  textDecoration: "none", boxShadow: "0 8px 32px rgba(255,77,0,0.3)",
-                                  display: "inline-block"
-                              }}
-                          >
-                              Join Telegram →
-                          </a>
-                          <a
-                              href="#telegram"
-                              style={{
-                                  background: "#fff", color: "#0A0A0A", padding: "18px 36px",
-                                  borderRadius: 50, fontWeight: 700, fontSize: "1.05rem",
-                                  textDecoration: "none", border: "2px solid #e5e5e5"
-                              }}
-                          >
-                               See What’s Inside →
-                          </a>
-                      </div>
+              <h1 style={{
+                fontSize: "clamp(2.5rem, 5vw, 3.5rem)",
+                fontWeight: 900,
+                lineHeight: 1.1,
+                color: "#0A0A0A",
+                marginBottom: "1.5rem",
+              }}>
+                Join the Private{" "}
+                <span style={{
+                  color: "#FF4D00",
+                  background: "linear-gradient(135deg, #FF4D00, #FF6B35)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                }}>
+                  Telegram{" "}
+                </span>
+                Everyone’s <br />
+                Talking About
+              </h1>
+
+              <p style={{
+                maxWidth: 500,
+                marginBottom: "2.5rem",
+                fontSize: "1.15rem",
+                color: "#555",
+                lineHeight: 1.7,
+              }}>
+                Get access to real-time insights, trending opportunities, and valuable drops shared daily.
+              </p>
+
+              <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+                <a
+                  href="#"
+                  style={{
+                    background: "#FF4D00",
+                    color: "#fff",
+                    padding: "18px 36px",
+                    borderRadius: 50,
+                    fontWeight: 700,
+                    textDecoration: "none",
+                    boxShadow: "0 8px 32px rgba(255,77,0,0.3)",
+                  }}
+                >
+                  Join Telegram →
+                </a>
+
+                <a
+                  href="#telegram"
+                  style={{
+                    background: "#fff",
+                    color: "#0A0A0A",
+                    padding: "18px 36px",
+                    borderRadius: 50,
+                    fontWeight: 700,
+                    textDecoration: "none",
+                    border: "2px solid #e5e5e5",
+                  }}
+                >
+                  See What’s Inside →
+                </a>
+              </div>
+            </div>
+          </Reveal>
+
+          {/* RIGHT IMAGE */}
+          <Reveal delay={200}>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <div
+                style={{
+                  width: "100%",
+                  maxWidth: 500,
+                  // borderRadius: "24px",
+                  overflow: "hidden",
+                  // boxShadow: "0 20px 60px rgba(0,0,0,0.12)",
+                  transform: "rotate(-2deg)",
+                  // border: "1px solid #eee",
+                  // background: "#fff",
+                }}
+              >
+                <img
+                  src="/images/hero-1.png" 
+                  alt="Telegram Preview"
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                    display: "block",
+                  }}
+                />
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section
+        style={{
+          padding: "2rem 2rem 7rem",
+          background: "#fff",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: 1200,
+            width: "100%",
+          }}
+        >
+          <Reveal delay={200}>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+                gap: "1.5rem",
+                background: "rgb(255 77 0 / 10%)",
+                padding: "2rem",
+                borderRadius: "24px",
+                border: "1px solid #f0f0f0",
+              }}
+            >
+              {stats.map((s) => (
+                <div
+                  key={s.label}
+                  style={{
+                    textAlign: "left",
+                    padding: "1.5rem",
+                    background: "#fff",
+                    borderRadius: "16px",
+                    boxShadow: "0 4px 20px rgba(0,0,0,0.03)",
+                    border: "1px solid #f5f5f5",
+                  }}
+                >
+                  <div style={{ marginBottom: "0.75rem" }}>
+                    <img
+                      src={s.icon}
+                      alt="icon"
+                      width={24}
+                      height={24}
+                      // style={{ filter: "grayscale(1) opacity(0.8)" }}
+                    />
                   </div>
-              </Reveal>
 
-              {/* RIGHT SIDE: Stats Grid */}
-              <Reveal delay={200}>
-                  <div style={{ 
-                      display: "grid", 
-                      gridTemplateColumns: "1fr 1fr", 
-                      gap: "1.5rem",
-                      background: "rgb(255 77 0 / 17%)",
-                      padding: "2rem",
-                      borderRadius: "24px",
-                      border: "1px solid #f0f0f0",
-                      backdropFilter: "blur(10px)"
-                  }}>
-                      {stats.map((s) => (
-                          <div key={s.label} style={{ 
-                              textAlign: "left", 
-                              padding: "1.5rem", 
-                              background: "#fff", 
-                              borderRadius: "16px",
-                              boxShadow: "0 4px 20px rgba(0,0,0,0.03)",
-                              border: "1px solid #f5f5f5"
-                          }}>
-                              <div style={{ marginBottom: "0.75rem" }}>
-                                  <img 
-                                      src={s.icon} 
-                                      alt='TNT' 
-                                      width={24} 
-                                      height={24} 
-                                      style={{ filter: "grayscale(1) opacity(0.8)" }} 
-                                  />
-                              </div>
-                              <div style={{ fontWeight: 900, fontSize: "1.8rem", color: "#1a1a1a", letterSpacing: "-1px" }}>
-                                  {s.number}
-                              </div>
-                              <div style={{ fontSize: "0.7rem", fontWeight: 700, color: "#888", textTransform: "uppercase", letterSpacing: "0.05em" }}>
-                                  {s.label}
-                              </div>
-                          </div>
-                      ))}
+                  <div
+                    style={{
+                      fontWeight: 900,
+                      fontSize: "1.8rem",
+                      color: "#1a1a1a",
+                      letterSpacing: "-1px",
+                    }}
+                  >
+                    {s.number}
                   </div>
-              </Reveal>
-          </div>
+
+                  <div
+                    style={{
+                      fontSize: "0.7rem",
+                      fontWeight: 700,
+                      color: "#888",
+                      textTransform: "uppercase",
+                      letterSpacing: "0.05em",
+                    }}
+                  >
+                    {s.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        </div>
       </section>
 
       {/* ── TELEGRAM ── */}
@@ -606,7 +737,7 @@ export default function App() {
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: "2rem" }}>
             <span style={{ color: colors.accent, fontWeight: 800, fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase" }}>Real-Time Metrics</span>
-            <h2 style={{ fontWeight: 900, fontSize: "clamp(2.5rem, 6vw, 3rem)", marginTop: "1rem" }}>The Community Keeps Growing</h2>
+            <h2 style={{ fontWeight: 900, fontSize: "clamp(2.5rem, 6vw, 3rem)", marginTop: "1rem" }}>The numbers don't lie</h2>
           </div>
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "2.5rem", marginBottom: "5rem" }}>
